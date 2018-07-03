@@ -19,7 +19,6 @@ public class Arquitetura {
     }
 
     public int getTamanho() {
-
         return tamanho;
     }
 
