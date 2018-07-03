@@ -1,60 +1,62 @@
+import java.lang.String;
+
 public class Registradores{
-    private int AX;
-    private int DX;
-    private int SP;
-    private int SI;
-    private int IP;
-    private int SR;
+    private String AX;
+    private String DX;
+    private String SP;
+    private String SI;
+    private String IP;
+    private String SR;
 
     public Registradores(){
-        this.SR=0;
+
     }
 
-    public int getAX() {
+    public String getAX() {
         return AX;
     }
 
-    public int getDX() {
+    public String getDX() {
         return DX;
     }
 
-    public int getIP() {
+    public String getIP() {
         return IP;
     }
 
-    public int getSI() {
+    public String getSI() {
         return SI;
     }
 
-    public int getSP() {
+    public String getSP() {
         return SP;
     }
 
-    public int getSR() {
+    public String getSR() {
         return SR;
     }
 
-    public void setAX(int AX) {
+    public void setAX(String AX) {
         this.AX = AX;
     }
 
-    public void setDX(int DX) {
+    public void setDX(String DX) {
         this.DX = DX;
     }
 
-    public void setIP(int IP) {
+    public void setIP(String IP) {
         this.IP = IP;
     }
 
-    public void setSI(int SI) {
+    public void setSI(String SI) {
         this.SI = SI;
     }
 
-    public void setSP(int SP) {
+    public void setSP(String SP) {
         this.SP = SP;
     }
 
-    public void setSR(int SR) {
+    public void setSR(String SR) {
         this.SR = SR;
     }
 
