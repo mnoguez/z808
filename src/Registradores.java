@@ -7,6 +7,9 @@ public class Registradores{
     private String SI;
     private String IP;
     private String SR;
+    private String CS;
+    private String DS;
+    private String SS;
 
     public Registradores(){
 
@@ -36,6 +39,18 @@ public class Registradores{
         return SR;
     }
 
+    public String getCS() {
+        return CS;
+    }
+
+    public String getDS() {
+        return DS;
+    }
+
+    public String getSS() {
+        return SS;
+    }
+
     public void setAX(String AX) {
         this.AX = AX;
     }
@@ -60,4 +75,15 @@ public class Registradores{
         this.SR = SR;
     }
 
+    public void setCS(String CS) {
+        this.CS = CS;
+    }
+
+    public void setDS(String DS) {
+        this.DS = DS;
+    }
+
+    public void setSS(String SS) {
+        this.SS = SS;
+    }
 }
