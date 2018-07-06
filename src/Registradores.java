@@ -10,6 +10,13 @@ public class Registradores{
     private String CS;
     private String DS;
     private String SS;
+    private static final int CF=0;
+    private static final int PF=1;
+    private static final int IF=2;
+    private static final int ZF=3;
+    private static final int SF=4;
+    private static final int OF=5;
+
 
     public Registradores(){
 
@@ -52,38 +59,63 @@ public class Registradores{
     }
 
     public void setAX(String AX) {
-        this.AX = AX;
+        if(this.tamanhoRegistrador(AX)) {
+            this.AX = AX;
+        }
     }
 
     public void setDX(String DX) {
-        this.DX = DX;
+        if(this.tamanhoRegistrador(DX)) {
+            this.DX = DX;
+        }
     }
 
     public void setIP(String IP) {
-        this.IP = IP;
+        if(this.tamanhoRegistrador(IP)) {
+            this.IP = IP;
+        }
     }
 
     public void setSI(String SI) {
-        this.SI = SI;
+        if(this.tamanhoRegistrador(SI)) {
+            this.SI = SI;
+        }
     }
 
     public void setSP(String SP) {
-        this.SP = SP;
+        if(this.tamanhoRegistrador(SP)) {
+            this.SP = SP;
+        }
     }
 
     public void setSR(String SR) {
-        this.SR = SR;
+        if(this.tamanhoRegistrador(SR)) {
+            this.SR = SR;
+        }
     }
 
     public void setCS(String CS) {
-        this.CS = CS;
+        if(this.tamanhoRegistrador(CS)) {
+            this.CS = CS;
+        }
     }
 
     public void setDS(String DS) {
-        this.DS = DS;
+        if(this.tamanhoRegistrador(DS)) {
+            this.DS = DS;
+        }
     }
 
     public void setSS(String SS) {
-        this.SS = SS;
+        if(this.tamanhoRegistrador(SS)) {
+            this.SS = SS;
+        }
+    }
+
+    public boolean tamanhoRegistrador(String Registrador){
+        if(Registrador.length()==16){
+            return true;
+        }
+        return false;
     }
 }
