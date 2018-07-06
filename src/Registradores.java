@@ -10,16 +10,15 @@ public class Registradores{
     private String CS;
     private String DS;
     private String SS;
-    private static final int CF=0;
-    private static final int PF=1;
-    private static final int IF=2;
-    private static final int ZF=3;
-    private static final int SF=4;
-    private static final int OF=5;
-
 
     public Registradores(){
-
+        this.SP="0000000000000000";
+        this.SI="0000000000000000";
+        this.IP="0000000000000000";
+        this.SR="0000000000000000";
+        this.CS="0000000000000000";
+        this.DS="0000000000000000";
+        this.SS="0000000000000000";
     }
 
     public String getAX() {
@@ -94,6 +93,12 @@ public class Registradores{
         }
     }
 
+    public void setSR(char bit,int flag){
+        char charSR[]=this.SR.toCharArray();
+        charSR[flag]=bit;
+        this.SR=new String(charSR);
+    }
+
     public void setCS(String CS) {
         if(this.tamanhoRegistrador(CS)) {
             this.CS = CS;
@@ -112,10 +117,12 @@ public class Registradores{
         }
     }
 
-    public boolean tamanhoRegistrador(String Registrador){
-        if(Registrador.length()==16){
+    private boolean tamanhoRegistrador(String Registrador){
+        if(Registrador.length()==16) {
             return true;
         }
         return false;
     }
+
+
 }
