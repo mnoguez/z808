@@ -4,6 +4,7 @@ public class Arquitetura {
 
     private int tamanho;
     private Registradores registradores;
+    private Memoria memoria;
 
     public Arquitetura(int tamanho, Registradores registradores){
         this.tamanho = tamanho;
@@ -24,5 +25,13 @@ public class Arquitetura {
 
     public void setTamanho(int tamanho) {
         this.tamanho = tamanho;
+    }
+
+    public Memoria getMemoria() {
+        return memoria;
+    }
+
+    public void setMemoria(Memoria memoria) {
+        this.memoria = memoria;
     }
 }
