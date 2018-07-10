@@ -1,6 +1,7 @@
 import java.lang.String;
 
 public class Registradores{
+    /*Registradores de Uso Geral*/
     private String AX;
     private String DX;
     private String SP;
@@ -10,6 +11,12 @@ public class Registradores{
     private String CS;
     private String DS;
     private String SS;
+    /*Registradores Arquiteturais */
+    private String PC;
+    private String LC;
+    private String RI;
+    private String REM;
+    private String RBM;
 
     public Registradores(){
         this.SP="0000000000000000";
@@ -55,6 +62,26 @@ public class Registradores{
 
     public String getSS() {
         return SS;
+    }
+
+    public String getLC() {
+        return LC;
+    }
+
+    public String getPC() {
+        return PC;
+    }
+
+    public String getRBM() {
+        return RBM;
+    }
+
+    public String getREM() {
+        return REM;
+    }
+
+    public String getRI() {
+        return RI;
     }
 
     public void setAX(String AX) {
@@ -117,12 +144,40 @@ public class Registradores{
         }
     }
 
+    public void setLC(String LC) {
+        if(this.tamanhoRegistrador(LC)) {
+            this.LC = LC;
+        }
+    }
+
+    public void setRBM(String RBM) {
+        if(this.tamanhoRegistrador(RBM)) {
+            this.RBM = RBM;
+        }
+    }
+
+    public void setREM(String REM) {
+        if(this.tamanhoRegistrador(REM)) {
+            this.REM = REM;
+        }
+    }
+
+    public void setRI(String RI) {
+        if(this.tamanhoRegistrador(RI)) {
+            this.RI = RI;
+        }
+    }
+
+    public void setPC(String PC) {
+        if(this.tamanhoRegistrador(PC)) {
+            this.PC = PC;
+        }
+    }
+
     private boolean tamanhoRegistrador(String Registrador){
         if(Registrador.length()==16) {
             return true;
         }
         return false;
     }
-
-
 }
