@@ -2,21 +2,14 @@
 
 public class Arquitetura {
 
-    private int tamanho;
-    private Registradores registradores;
-    private Memoria memoria;
+    private int tamanho; //TAMANHO DA ARQUITETURA (16 BITS)
+    private Registradores registradores; //CONJUNTO DE REGISTRADORES
+    private Memoria memoria; //MEMORIA
 
-    public Arquitetura(int tamanho, Registradores registradores){
-        this.tamanho = tamanho;
-        this.registradores = registradores;
-    }
-
-    public Registradores getRegistradores() {
-        return registradores;
-    }
-
-    public void setRegistradores(Registradores registradores) {
-        this.registradores = registradores;
+    public Arquitetura(){
+        this.tamanho = 16; //16 BITS
+        this.registradores = new Registradores();
+        this.memoria = new Memoria();
     }
 
     public int getTamanho() {
@@ -25,6 +18,14 @@ public class Arquitetura {
 
     public void setTamanho(int tamanho) {
         this.tamanho = tamanho;
+    }
+
+    public Registradores getRegistradores() {
+        return registradores;
+    }
+
+    public void setRegistradores(Registradores registradores) {
+        this.registradores = registradores;
     }
 
     public Memoria getMemoria() {
