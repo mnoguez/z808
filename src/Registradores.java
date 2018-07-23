@@ -13,7 +13,7 @@ public class Registradores{
     private String SS;
     /*Registradores Arquiteturais */
     private String PC;
-    private String LC;
+    private int LC;
     private String RI;
     private String REM;
     private String RBM;
@@ -64,7 +64,7 @@ public class Registradores{
         return SS;
     }
 
-    public String getLC() {
+    public int getLC() {
         return LC;
     }
 
@@ -144,10 +144,8 @@ public class Registradores{
         }
     }
 
-    public void setLC(String LC) {
-        if(this.tamanhoRegistrador(LC)) {
-            this.LC = LC;
-        }
+    public void setLC(int LC) {
+        this.LC = LC;
     }
 
     public void setRBM(String RBM) {
