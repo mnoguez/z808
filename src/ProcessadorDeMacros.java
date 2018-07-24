@@ -17,14 +17,17 @@ public class ProcessadorDeMacros {
      *
      * @param macros        Lista de macros
      * @param comandos      Lista de comandos no programa
-     * @param nomeDasMacros Lista com o nome de todas as macros definidas
      * @return Programa finalizado com todas as macros expandidos
      */
-    public ArrayList<ArrayList<String>> ProcessaMacros(ArrayList<ArrayList<String>> macros, ArrayList<ArrayList<String>> comandos, ArrayList<String> nomeDasMacros) {
+    public ArrayList<ArrayList<String>> ProcessaMacros(ArrayList<ArrayList<String>> macros, ArrayList<ArrayList<String>> comandos) {
 
         ArrayList<ArrayList<String>> programaFinalizado = new ArrayList<ArrayList<String>>();
-        ArrayList<ArrayList<String>> corpoDaMacro = new ArrayList<ArrayList<String>>();
+        ArrayList<ArrayList<String>> corpoDaMacro;
         ArrayList<String> variaveis = new ArrayList<String>();
+        ArrayList<String> nomeDasMacros;
+
+        nomeDasMacros = SeparaNomeDasMacros(macros);
+
         boolean buscaMacro = false;
         String aux = new String();
 
