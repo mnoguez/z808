@@ -26,7 +26,7 @@ public class Main {
             System.out.println(linha);
         }*/
 
-        ArrayList<ArrayList<String>> macros = new ArrayList<ArrayList<String>>();
+        /*ArrayList<ArrayList<String>> macros = new ArrayList<ArrayList<String>>();
         ArrayList<ArrayList<String>> codigo = new ArrayList<ArrayList<String>>();
         ArrayList<ArrayList<String>> codigoFinal = new ArrayList<ArrayList<String>>();
 
@@ -117,6 +117,6 @@ public class Main {
 
         for(ArrayList<String> linha : codigoFinal){
             System.out.println(linha);
-        }
+        }*/
     }
 }

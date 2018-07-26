@@ -19,16 +19,16 @@ public class Interfacegrafica extends javax.swing.JFrame {
     /**
      * Creates new form IGz808
      */
-   
+
     String[] code;
-    
+
     public Interfacegrafica() {
         super("Z808");
         initComponents();
         setLocationRelativeTo(null);
-        lerTxt();      
+        lerTxt();
     }
-    
+
     public void lerTxt(){
        String line = "";
         try{
@@ -46,13 +46,13 @@ public class Interfacegrafica extends javax.swing.JFrame {
                 arq.close();
             }catch (IOException ex){
                 System.out.println("ERRO");
-            }  
+            }
         } catch (FileNotFoundException ex) {
-            
-        }      
-        
+
+        }
+
     }
-    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -292,7 +292,7 @@ public class Interfacegrafica extends javax.swing.JFrame {
     private void runButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runButtonActionPerformed
 
         System.exit(0);
-        
+
     }//GEN-LAST:event_runButtonActionPerformed
 
     private void cleanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanButtonActionPerformed
@@ -345,7 +345,7 @@ public class Interfacegrafica extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
