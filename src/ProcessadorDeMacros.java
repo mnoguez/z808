@@ -21,26 +21,28 @@ public class ProcessadorDeMacros {
      */
     public ArrayList<ArrayList<String>> ProcessaMacros(ArrayList<ArrayList<String>> macros, ArrayList<ArrayList<String>> comandos) {
 
-        ArrayList<ArrayList<String>> programaFinalizado = new ArrayList<ArrayList<String>>();
+        ArrayList<ArrayList<String>> programaFinalizado = new ArrayList<>();
         ArrayList<ArrayList<String>> corpoDaMacro;
-        ArrayList<String> variaveis = new ArrayList<String>();
+        ArrayList<String> variaveis = new ArrayList<>();
         ArrayList<String> nomeDasMacros;
 
         nomeDasMacros = SeparaNomeDasMacros(macros);
-
+/*
+        for(String nome : nomeDasMacros){
+            System.out.println(nome);
+        }
+*/
         boolean buscaMacro = false;
         String aux = new String();
 
         for (ArrayList<String> linhas : comandos) {
             for (String comando : linhas) {
-                if (buscaMacro){
+                if (buscaMacro) {
                     variaveis.add(comando);
                 }
                 if (IsMacro(nomeDasMacros, comando)) {
                     buscaMacro = true;
                     aux = comando;
-                }else{
-                    programaFinalizado.add(linhas);
                 }
             }
             if(buscaMacro){
@@ -48,7 +50,10 @@ public class ProcessadorDeMacros {
                 for(ArrayList<String> linha: corpoDaMacro){
                     programaFinalizado.add(linha);
                 }
+                variaveis.clear();
                 buscaMacro = false;
+            }else {
+                programaFinalizado.add(linhas);
             }
         }
 
@@ -64,10 +69,11 @@ public class ProcessadorDeMacros {
      * @return retorna uma Arraylis com todas as linhas do corpo macro da macro
      */
     public ArrayList<ArrayList<String>> BuscaCorpoDaMacro(ArrayList<ArrayList<String>> macros, String nomeMacro, ArrayList<String> variaveis){
-        ArrayList<ArrayList<String>> corpoDaMacro = new ArrayList<ArrayList<String>>();
+        ArrayList<ArrayList<String>> corpoDaMacro = new ArrayList<>();
         HashMap<String, String> variaveisParaTroca = new HashMap<>();
         boolean começaCopia = false;
-        boolean arrumaVariavies = false;
+        boolean arrumaVariavies;
+        boolean finaliza = false;
         int indexVariavel = 0;
 
         for(ArrayList<String> linhas : macros) {
@@ -76,16 +82,17 @@ public class ProcessadorDeMacros {
                 corpoDaMacro.add(linhas);
             }
             for (String comando : linhas) {
-                if (arrumaVariavies){
+                if (arrumaVariavies && !(comando.equals("MACRO"))){
                     variaveisParaTroca.put(comando,variaveis.get(indexVariavel));
                     indexVariavel++;
                 }
-                if ( comando.equals(nomeMacro) ){
+                if ( comando.equals(nomeMacro) && !finaliza){
                     começaCopia = true;
                     arrumaVariavies = true;
                 }
                 if ( começaCopia && MacroEnd(comando) ) {
                     começaCopia = false;
+                    finaliza = true;
                     corpoDaMacro.remove(linhas);
                 }
             }
@@ -118,7 +125,7 @@ public class ProcessadorDeMacros {
      * @return lista de nomes das macros
      */
     public ArrayList<String> SeparaNomeDasMacros(ArrayList<ArrayList<String>> macros) {
-        ArrayList<String> nomeDasMacros = new ArrayList<String>();
+        ArrayList<String> nomeDasMacros = new ArrayList<>();
 
         for (ArrayList<String> macro : macros) {
             for (String comando : macro) {
