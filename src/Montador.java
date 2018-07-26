@@ -7,7 +7,9 @@ public class Montador {
     private HashMap<String, String[]> tabelaSimbolos;
 
     public Montador(ArrayList<ArrayList<String>> codigoFonte){
-        for(ArrayList<String> linha:codigoFonte){
+        this.codigoFonte = new ArrayList<ArrayList<String>>();
+
+        for(ArrayList<String> linha : codigoFonte){
             this.codigoFonte.add(linha);
         }
 
@@ -45,8 +47,6 @@ public class Montador {
         registradores.setLC(0);
 
         for(ArrayList<String> linha : this.codigoFonte){
-            codigoObjeto.add(new ArrayList<String>());
-
             for(String simbolo : linha) {
                 if (!this.tabelaOp.containsKey(simbolo)) {
                     //ADICIONA SIMBOLO NA TABELA DE SIMBOLOS
@@ -61,12 +61,12 @@ public class Montador {
 
                 registradores.setLC(registradores.getLC() + 1);
             }
-
-            registradores.setLC(registradores.getLC() + 1);
         }
 
         //SEGUNDO PASSO
         for(ArrayList<String> linha : this.codigoFonte){
+            codigoObjeto.add(new ArrayList<String>());
+
             for(String simbolo : linha){
                 if(this.tabelaOp.containsKey(simbolo))
                     codigoObjeto.get(this.codigoFonte.indexOf(linha)).add(this.tabelaOp.get(simbolo));
