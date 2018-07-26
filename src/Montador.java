@@ -13,6 +13,21 @@ public class Montador {
 
         //IMPLEMENTA TABELA DE OPERACOES
         this.tabelaOp = new HashMap<String, String>();
+        this.tabelaOp.put("ADD", "0000000000000011");
+        this.tabelaOp.put("DIV", "0000000011110111");
+        this.tabelaOp.put("SUB", "0000000000101011");
+        this.tabelaOp.put("MUL", "0000000011110111");
+        this.tabelaOp.put("CMP", "0000000000111101");
+        this.tabelaOp.put("AND", "0000000000100011");
+        this.tabelaOp.put("NOT", "0000000011110111");
+        this.tabelaOp.put("OR", "0000000000001011");
+        this.tabelaOp.put("XOR", "0000000000110011");
+        this.tabelaOp.put("JE", "0000000001110100");
+        this.tabelaOp.put("JNZ", "0000000001110101");
+        this.tabelaOp.put("JMP", "0000000011101011");
+        this.tabelaOp.put("AX", "0000000011000000");
+        this.tabelaOp.put("DX", "0000000011000010");
+        this.tabelaOp.put("SI", "0000000011110110");
 
         //IMPLEMENTA TABELA DE SIMBOLOS
         this.tabelaSimbolos = new HashMap<String, String[]>();

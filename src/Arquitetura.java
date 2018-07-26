@@ -9,7 +9,7 @@ public class Arquitetura {
     public Arquitetura(){
         this.tamanho = 16; //16 BITS
         this.registradores = new Registradores();
-        this.memoria = new Memoria();
+        this.memoria = new Memoria(16);
     }
 
     public int getTamanho() {
