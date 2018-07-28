@@ -113,7 +113,7 @@ public class Main {
         ProcessadorDeMacros pdMacros = new ProcessadorDeMacros(macros,codigo);
 
 
-        codigoFinal = pdMacros.ProcessaMacros(macros,codigo);
+        codigoFinal = pdMacros.ProcessaMacros();
 
         for(ArrayList<String> linha : codigoFinal){
             System.out.println(linha);

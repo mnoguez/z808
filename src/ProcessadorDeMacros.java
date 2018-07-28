@@ -14,19 +14,16 @@ public class ProcessadorDeMacros {
 
     /**
      * Metodo principal que processa as macros no programa e as expande para criar um programa so
-     *
-     * @param macros        Lista de macros
-     * @param comandos      Lista de comandos no programa
      * @return Programa finalizado com todas as macros expandidos
      */
-    public ArrayList<ArrayList<String>> ProcessaMacros(ArrayList<ArrayList<String>> macros, ArrayList<ArrayList<String>> comandos) {
+    public ArrayList<ArrayList<String>> ProcessaMacros() {
 
         ArrayList<ArrayList<String>> programaFinalizado = new ArrayList<>();
         ArrayList<ArrayList<String>> corpoDaMacro;
         ArrayList<String> variaveis = new ArrayList<>();
         ArrayList<String> nomeDasMacros;
 
-        nomeDasMacros = SeparaNomeDasMacros(macros);
+        nomeDasMacros = SeparaNomeDasMacros(this.macros);
 /*
         for(String nome : nomeDasMacros){
             System.out.println(nome);
@@ -35,7 +32,7 @@ public class ProcessadorDeMacros {
         boolean buscaMacro = false;
         String aux = new String();
 
-        for (ArrayList<String> linhas : comandos) {
+        for (ArrayList<String> linhas : this.comandos) {
             for (String comando : linhas) {
                 if (buscaMacro) {
                     variaveis.add(comando);
@@ -46,7 +43,7 @@ public class ProcessadorDeMacros {
                 }
             }
             if(buscaMacro){
-                corpoDaMacro = BuscaCorpoDaMacro(macros, aux, variaveis);
+                corpoDaMacro = BuscaCorpoDaMacro(this.macros, aux, variaveis);
                 for(ArrayList<String> linha: corpoDaMacro){
                     programaFinalizado.add(linha);
                 }
