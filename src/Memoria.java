@@ -15,7 +15,11 @@ public class Memoria {
 
         this.inicioCodigo = 0;
         this.inicioDados = ((int) Math.pow(2, nbits)) / 3;
-        this.inicioDados = 2 * (((int) Math.pow(2, nbits)) / 3);
+        this.inicioPilha = 2 * (((int) Math.pow(2, nbits)) / 3);
+    }
+
+    public boolean escreveMemoria(ArrayList<ArrayList<String>> metadado, boolean tipoMetadado){
+        return true;
     }
 
     public String[] getMemoria() {
