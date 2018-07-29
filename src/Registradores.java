@@ -179,7 +179,7 @@ public class Registradores{
         return false;
     }
 
-    private void addLC(){
+    public void addLC(){
         this.setLC((getLC() + 1));
     }
 }
