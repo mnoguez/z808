@@ -178,4 +178,8 @@ public class Registradores{
         }
         return false;
     }
+
+    private void addLC(){
+        this.setLC((getLC() + 1));
+    }
 }
