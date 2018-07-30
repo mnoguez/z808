@@ -5,9 +5,9 @@ public class Main {
 
     public static void main(String args[]){
 
-        ArrayList<ArrayList<String>> macros = new ArrayList<ArrayList<String>>();
         ArrayList<ArrayList<String>> codigoFinal = new ArrayList<ArrayList<String>>();
 
+        ArrayList<ArrayList<String>> macros = new ArrayList<ArrayList<String>>();
         macros.add(new ArrayList<String>());
         macros.get(0).add("SOMA");
         macros.get(0).add("MACRO");
@@ -263,19 +263,24 @@ public class Main {
 
             Montador montador = new Montador();
             codigoObjetoParcial = montador.montaCodigoObjeto(codigoFinal, registradores, tabelaOp);
-
+            int i = 0;
             for(ArrayList<String> linha : codigoFinal){
-                System.out.println(linha);
+                System.out.println(i + ": " + linha);
+                i+=3;
             }
+            i = 0;
             System.out.println();
             for(ArrayList<String> linha : codigoObjetoParcial){
-                System.out.println(linha);
+                System.out.print(i + ": ");
+                for(String comando : linha) {
+                    System.out.print(Integer.parseInt(comando,2) + ",");
+                }
+                System.out.println();
+                i+=3;
             }
             System.out.println();
 
-
             entradaLigador.add(codigoFinal);
-
 
         }
 
@@ -285,9 +290,17 @@ public class Main {
 
         System.out.println();
 
+        int j = 0;
         for(ArrayList<String> linha : codigoObjetoParcial){
-            System.out.println(linha);
+            System.out.print(j + ": ");
+            for(String comando : linha) {
+                System.out.print(Integer.parseInt(comando,2) + ",");
+            }
+            System.out.println();
+            j+=3;
         }
-
+        System.out.println();
+        System.out.println(Integer.toBinaryString(50));
+        System.out.println(Integer.toBinaryString(58));
     }
 }
