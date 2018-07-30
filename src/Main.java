@@ -1,33 +1,102 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Main {
+
     public static void main(String args[]){
-        /*ArrayList<ArrayList<String>> codigo = new ArrayList<ArrayList<String>>();
-        Registradores registradores = new Registradores();
+//        ArrayList<ArrayList<String>> modulo1 = new ArrayList<ArrayList<String>>();
+//        Registradores registradores = new Registradores();
+//        HashMap<String, String> tabelaOp;
+//
+//        tabelaOp = new HashMap<String, String>();
+//        tabelaOp.put("ADD", "00000011");
+//        tabelaOp.put("DIV", "11110111");
+//        tabelaOp.put("SUB", "00101011");
+//        tabelaOp.put("MUL", "11110111");
+//        tabelaOp.put("CMP", "00111101");
+//        tabelaOp.put("AND", "00100011");
+//        tabelaOp.put("NOT", "11110111");
+//        tabelaOp.put("OR", "00001011");
+//        tabelaOp.put("XOR", "00110011");
+//        tabelaOp.put("JE", "01110100");
+//        tabelaOp.put("JNZ", "01110101");
+//        tabelaOp.put("JMP", "11101011");
+//        tabelaOp.put("AX", "11000000");
+//        tabelaOp.put("DX", "11000010");
+//        tabelaOp.put("SI", "11110110");
+//        tabelaOp.put("MOV", "10001011");
+//
+//        //
+//        //add ax, dx
+//
+//        modulo1.add(new ArrayList<String>());
+//        modulo1.get(0).add("ADD");
+//        modulo1.get(0).add("TESTE");
+//        modulo1.get(0).add("DX");
+//        modulo1.add(new ArrayList<String>());
+//        modulo1.get(1).add("ADD");
+//        modulo1.get(1).add("TESTE");
+//        modulo1.get(1).add("SI");
+//        modulo1.add(new ArrayList<String>());
+//        modulo1.get(2).add("ADD");
+//        modulo1.get(2).add("AX");
+//        modulo1.get(2).add("DX");
+//
+//        Montador montador = new Montador();
+//
+//        System.out.println("MODULO 1: ");
+//        for(ArrayList<String> linha : modulo1){
+//            System.out.println(linha);
+//        }
+//
+////        modulo1 = montador.montaCodigoObjeto(modulo1, registradores);
+////
+////        System.out.println("MODULO 1: ");
+////        for(ArrayList<String> linha : modulo1){
+////            System.out.println(linha);
+////        }
+//
+//        ArrayList<ArrayList<String>> modulo2 = new ArrayList<ArrayList<String>>();
+//
+//        modulo2.add(new ArrayList<String>());
+//        modulo2.get(0).add("ADD");
+//        modulo2.get(0).add("OI");
+//        modulo2.get(0).add("DX");
+//        modulo2.add(new ArrayList<String>());
+//        modulo2.get(1).add("MUL");
+//        modulo2.get(1).add("TESTE");
+//        modulo2.get(1).add("DX");
+//
+//        System.out.println("MODULO 2: ");
+//        for(ArrayList<String> linha : modulo2){
+//            System.out.println(linha);
+//        }
+//
+////        modulo2 = montador.montaCodigoObjeto(modulo2, registradores);
+////
+////        System.out.println("MODULO 2: ");
+////        for(ArrayList<String> linha : modulo2){
+////            System.out.println(linha);
+////        }
+//
+//        Ligador ligador = new Ligador();
+//
+//        ArrayList<ArrayList<String>> codigoObjeto = new ArrayList<ArrayList<String>>();
+//        ArrayList<ArrayList<ArrayList<String>>> modulos = new ArrayList<ArrayList<ArrayList<String>>>();
+//        modulos.add(modulo1);
+//        modulos.add(modulo2);
+//        codigoObjeto = ligador.liga(modulos, tabelaOp, registradores);
+//        System.out.println("MODULOS:");
+//        for(ArrayList<ArrayList<String>> modulo : modulos)
+//            for(ArrayList<String> linha : modulo){
+//                System.out.println(linha);
+//            }
+//        System.out.println("CODIGO OBJETO:");
+//        for(ArrayList<String> linha : codigoObjeto){
+//            System.out.println(linha);
+//        }
 
-        codigo.add(new ArrayList<String>());
-        codigo.get(0).add("ADD");
-        codigo.get(0).add("TESTE");
-        codigo.get(0).add("DX");
-        codigo.add(new ArrayList<String>());
-        codigo.get(1).add("ADD");
-        codigo.get(1).add("TESTE");
-        codigo.get(1).add("SI");
-        codigo.add(new ArrayList<String>());
-        codigo.get(2).add("ADD");
-        codigo.get(2).add("AX");
-        codigo.get(2).add("DX");
-
-        Montador montador = new Montador(codigo);
-
-        codigo = montador.montaCodigoObjeto(registradores);
-
-        for(ArrayList<String> linha : codigo){
-            System.out.println(linha);
-        }*/
-
-        /*ArrayList<ArrayList<String>> macros = new ArrayList<ArrayList<String>>();
-        ArrayList<ArrayList<String>> codigo = new ArrayList<ArrayList<String>>();
+        ArrayList<ArrayList<String>> macros = new ArrayList<ArrayList<String>>();
         ArrayList<ArrayList<String>> codigoFinal = new ArrayList<ArrayList<String>>();
 
 
@@ -69,54 +138,52 @@ public class Main {
         macros.get(8).add("DIV");
         macros.get(8).add("DOIS");
         macros.get(8).add("TRES");
+        macros.add(new ArrayList<String>());
+        macros.get(9).add("ADD");
+        macros.get(9).add("TESTE");
+        macros.get(9).add("DX");
+        macros.add(new ArrayList<String>());
+        macros.get(10).add("ADD");
+        macros.get(10).add("TESTE");
+        macros.get(10).add("SI");
+        macros.add(new ArrayList<String>());
+        macros.get(11).add("ADD");
+        macros.get(11).add("AX");
+        macros.get(11).add("DX");
+        macros.add(new ArrayList<String>());
+        macros.get(12).add("SOMA");
+        macros.get(12).add("ABC");
+        macros.get(12).add("DEF");
+        macros.get(12).add("GHE");
+        macros.add(new ArrayList<String>());
+        macros.get(13).add("LOUCURA");
+        macros.get(13).add("QUATRO");
+        macros.get(13).add("CINCO");
+        macros.get(13).add("SEIS");
+        macros.add(new ArrayList<String>());
+        macros.get(14).add("ADD");
+        macros.get(14).add("AX");
+        macros.get(14).add("DX");
+        macros.add(new ArrayList<String>());
+        macros.get(15).add("ADD");
+        macros.get(15).add("AX");
+        macros.get(15).add("DX");
+        macros.add(new ArrayList<String>());
+        macros.get(16).add("ADD");
+        macros.get(16).add("AX");
+        macros.get(16).add("DX");
+        macros.add(new ArrayList<String>());
+        macros.get(17).add("ADD");
+        macros.get(17).add("AX");
+        macros.get(17).add("DX");
 
-
-        codigo.add(new ArrayList<String>());
-        codigo.get(0).add("ADD");
-        codigo.get(0).add("TESTE");
-        codigo.get(0).add("DX");
-        codigo.add(new ArrayList<String>());
-        codigo.get(1).add("ADD");
-        codigo.get(1).add("TESTE");
-        codigo.get(1).add("SI");
-        codigo.add(new ArrayList<String>());
-        codigo.get(2).add("ADD");
-        codigo.get(2).add("AX");
-        codigo.get(2).add("DX");
-        codigo.add(new ArrayList<String>());
-        codigo.get(3).add("SOMA");
-        codigo.get(3).add("ABC");
-        codigo.get(3).add("DEF");
-        codigo.get(3).add("GHE");
-        codigo.add(new ArrayList<String>());
-        codigo.get(4).add("LOUCURA");
-        codigo.get(4).add("QUATRO");
-        codigo.get(4).add("CINCO");
-        codigo.get(4).add("SEIS");
-        codigo.add(new ArrayList<String>());
-        codigo.get(5).add("ADD");
-        codigo.get(5).add("AX");
-        codigo.get(5).add("DX");
-        codigo.add(new ArrayList<String>());
-        codigo.get(6).add("ADD");
-        codigo.get(6).add("AX");
-        codigo.get(6).add("DX");
-        codigo.add(new ArrayList<String>());
-        codigo.get(7).add("ADD");
-        codigo.get(7).add("AX");
-        codigo.get(7).add("DX");
-        codigo.add(new ArrayList<String>());
-        codigo.get(8).add("ADD");
-        codigo.get(8).add("AX");
-        codigo.get(8).add("DX");
-
-        ProcessadorDeMacros pdMacros = new ProcessadorDeMacros(macros,codigo);
-
-
+        SeparadorDeCodigo s = new SeparadorDeCodigo(macros);
+        s.SaparaCodigoMacros();
+        ProcessadorDeMacros pdMacros = new ProcessadorDeMacros(s.getCodigoMacros(), s.getCodigoExecutavel());
         codigoFinal = pdMacros.ProcessaMacros();
 
         for(ArrayList<String> linha : codigoFinal){
             System.out.println(linha);
-        }*/
+        }
     }
 }

@@ -25,6 +25,8 @@ public class Ligador {
             }
         }
 
+
+
         //System.out.println("SIMBOLOS:");
 
         //RECALCULA POSICOES REFERENTES A SIMBOLOS
