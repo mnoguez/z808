@@ -51,7 +51,7 @@ public class Ligador {
             }
         }
 
-        System.out.println("MODULOS EM BINARIO");
+//        System.out.println("MODULOS EM BINARIO");
 
         //SEGUNDO PASSO
         for(ArrayList<String> linha : modulos){
@@ -66,12 +66,12 @@ public class Ligador {
             i++;
         }
 
-        i = 0;
-
-        for (ArrayList<String> linha : codigoObjeto){
-            System.out.println("i: " + i + " - " + linha);
-            i+=3;
-        }
+//        i = 0;
+//
+//        for (ArrayList<String> linha : codigoObjeto){
+//            System.out.println("i: " + i + " - " + linha);
+//            i+=3;
+//        }
 
         return codigoObjeto;
     }

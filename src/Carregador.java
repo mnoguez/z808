@@ -1,43 +1,96 @@
 import java.util.ArrayList;
 
 public class Carregador {
-    private ArrayList<ArrayList<String>> codigoFinal;
+    private ArrayList<ArrayList<String>> codigo;
     private TabelaDeSimbolos tabelaSimbolosGlobal;
+    private TabelaDeOperacoes tabelaOp;
 
-    public Carregador(ArrayList<ArrayList<String>> codigoFinal, TabelaDeSimbolos tabelaSimbolosGlobal) {
-        this.codigoFinal = codigoFinal;
+    public Carregador(ArrayList<ArrayList<String>> codigo, TabelaDeSimbolos tabelaSimbolosGlobal, TabelaDeOperacoes tabelaOp) {
+        this.codigo = codigo;
         this.tabelaSimbolosGlobal = tabelaSimbolosGlobal;
+        this.tabelaOp = tabelaOp;
     }
 
-    public void CarregaDados(Registradores registradores, int inicioDoCarregamento){
+    public ArrayList<ArrayList<String>> CarregaDados(Registradores registradores, int inicioDoCarregamento, Memoria memoria) {
         registradores.setLC(inicioDoCarregamento);
+        int i = 0;
 
-        for(ArrayList<String> linha : this.codigoFinal){
-            for(String comando : linha){
-                if(!eRegistrador(comando)){
-                    if(!this.tabelaSimbolosGlobal.getTabela().get(comando).equals("a")){
-                        String[] aux = new String[2];
-                        aux[0] = Integer.toBinaryString(registradores.getLC());
-                        aux[1] = "a";
-                        tabelaSimbolosGlobal.getTabela().put(comando, aux);
+        //RECALCULA POSICOES EM RELAÇAO AO PONTO DE CARREGAMENTO
+        for (ArrayList<String> linha : this.codigo) {
+            for (String simbolo : linha) {
+                //System.out.println(simbolo);
+                if (!this.tabelaOp.getTabela().containsKey(simbolo)) {
+                    //ATUALIZA OU ADICIONA SIMBOLO NA TABELA DE SIMBOLOS GLOBAIS
+                    if (this.tabelaSimbolosGlobal.getTabela().containsKey(simbolo))
+                        this.tabelaSimbolosGlobal.getTabela().get(simbolo)[0] = Integer.toBinaryString(registradores.getLC());
+                    else {
+                        this.tabelaSimbolosGlobal.getTabela().put(simbolo, new String[2]);
+                        this.tabelaSimbolosGlobal.getTabela().get(simbolo)[0] = Integer.toBinaryString(registradores.getLC());
+                        this.tabelaSimbolosGlobal.getTabela().get(simbolo)[1] = "a";
+
+                        if (linha.indexOf(simbolo) == 0) {
+                            registradores.setLC(registradores.getLC() - 1);
+                        }
                     }
                 }
+
                 registradores.addLC();
             }
         }
+
+        ArrayList<ArrayList<String>> codigoObjeto = new ArrayList<>();
+
+        for(ArrayList<String> linha : this.codigo){
+            codigoObjeto.add(new ArrayList<String>());
+
+            for(String simbolo : linha){
+                if(this.tabelaOp.getTabela().containsKey(simbolo))
+                    codigoObjeto.get(i).add(this.tabelaOp.getTabela().get(simbolo));
+                else
+                    codigoObjeto.get(i).add(this.tabelaSimbolosGlobal.getTabela().get(simbolo)[0]);
+            }
+
+            i++;
+        }
+
+        //ESCREVE NA MEMORIA
+        for(ArrayList<String> linha : codigoObjeto){
+            for(String simbolo : linha){
+                memoria.escreveMemoria(simbolo, "c");
+            }
+        }
+
+        return codigoObjeto;
     }
 
     public boolean eRegistrador(String comparador){
-        if (comparador.equals("11000000|11000010|11110110")) return true;
-        else return false;
+        if (comparador.equals("11000000|11000010|11110110"))
+            return true;
+        else
+            return false;
     }
-    
-    public ArrayList<ArrayList<String>> getCodigoFinal() { return codigoFinal;  }
 
-    public void setCodigoFinal(ArrayList<ArrayList<String>> codigoFinal) {this.codigoFinal = codigoFinal;}
+    public ArrayList<ArrayList<String>> getCodigo() {
+        return codigo;
+    }
 
-    public TabelaDeSimbolos getTabelaSimbolos() {return tabelaSimbolosGlobal;}
+    public void setCodigo(ArrayList<ArrayList<String>> codigo) {
+        this.codigo = codigo;
+    }
 
-    public void setTabelaSimbolos(TabelaDeSimbolos tabelaSimbolosGlobal) {this.tabelaSimbolosGlobal = tabelaSimbolosGlobal;}
+    public TabelaDeSimbolos getTabelaSimbolosGlobal() {
+        return tabelaSimbolosGlobal;
+    }
 
+    public void setTabelaSimbolosGlobal(TabelaDeSimbolos tabelaSimbolosGlobal) {
+        this.tabelaSimbolosGlobal = tabelaSimbolosGlobal;
+    }
+
+    public TabelaDeOperacoes getTabelaOp() {
+        return tabelaOp;
+    }
+
+    public void setTabelaOp(TabelaDeOperacoes tabelaOp) {
+        this.tabelaOp = tabelaOp;
+    }
 }

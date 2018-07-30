@@ -18,8 +18,36 @@ public class Memoria {
         this.inicioPilha = 2 * (((int) Math.pow(2, nbits)) / 3);
     }
 
-    public boolean escreveMemoria(ArrayList<ArrayList<String>> metadado, boolean tipoMetadado){
-        return true;
+    public int pegaIndiceLivre(String local){
+        int indice = 0;
+
+        if(local.equals("c"))
+            for(indice = 0; indice < this.inicioDados; indice++){
+                if(this.memoria[indice].equals("0000000000000000"))
+                    return indice;
+            }
+        else if(local.equals("d"))
+            for(indice = this.inicioDados; indice < this.inicioPilha; indice++){
+                if(this.memoria[indice].equals("0000000000000000"))
+                    return indice;
+            }
+        else if(local.equals("p"))
+            for(indice = this.inicioPilha; indice < this.memoria.length; indice++){
+                if(this.memoria[indice].equals("0000000000000000"))
+                    return indice;
+            }
+
+        return -1;
+    }
+
+    public boolean escreveMemoria(String metadado, String local){
+        if(pegaIndiceLivre(local) > 0) {
+            this.memoria[pegaIndiceLivre(local)] = metadado;
+
+            return true;
+        }
+        else
+            return false;
     }
 
     public String[] getMemoria() {
