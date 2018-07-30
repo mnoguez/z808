@@ -2,9 +2,9 @@ import java.util.ArrayList;
 
 public class Carregador {
     private ArrayList<ArrayList<String>> codigoFinal;
-    private Tabela tabelaSimbolosGlobal;
+    private TabelaDeSimbolos tabelaSimbolosGlobal;
 
-    public Carregador(ArrayList<ArrayList<String>> codigoFinal, Tabela tabelaSimbolosGlobal) {
+    public Carregador(ArrayList<ArrayList<String>> codigoFinal, TabelaDeSimbolos tabelaSimbolosGlobal) {
         this.codigoFinal = codigoFinal;
         this.tabelaSimbolosGlobal = tabelaSimbolosGlobal;
     }
@@ -28,7 +28,7 @@ public class Carregador {
     }
 
     public boolean eRegistrador(String comparador){
-        if (comparador.equals("AX|DX|SP|SI|IP|SR|CS|DS|SS|PC|RI|REM|RBM")) return true;
+        if (comparador.equals("11000000|11000010|11110110")) return true;
         else return false;
     }
     
@@ -36,8 +36,8 @@ public class Carregador {
 
     public void setCodigoFinal(ArrayList<ArrayList<String>> codigoFinal) {this.codigoFinal = codigoFinal;}
 
-    public Tabela getTabelaSimbolos() {return tabelaSimbolosGlobal;}
+    public TabelaDeSimbolos getTabelaSimbolos() {return tabelaSimbolosGlobal;}
 
-    public void setTabelaSimbolos(Tabela tabelaSimbolosGlobal) {this.tabelaSimbolosGlobal = tabelaSimbolosGlobal;}
+    public void setTabelaSimbolos(TabelaDeSimbolos tabelaSimbolosGlobal) {this.tabelaSimbolosGlobal = tabelaSimbolosGlobal;}
 
 }

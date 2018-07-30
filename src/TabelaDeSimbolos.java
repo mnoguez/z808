@@ -1,12 +1,9 @@
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Tabela {
-
+public class TabelaDeSimbolos {
     private HashMap<String, String[]> tabela;
 
-    public Tabela() {
+    public TabelaDeSimbolos() {
         this.tabela = new HashMap<>();
     }
 
@@ -16,5 +13,9 @@ public class Tabela {
 
     public void setTabela(HashMap<String, String[]> tabela) {
         this.tabela = tabela;
+    }
+
+    public void adicionaElemento(String chave, String[] elemento){
+        this.tabela.put(chave, elemento);
     }
 }
