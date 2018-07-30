@@ -486,12 +486,23 @@ public class Interface extends javax.swing.JFrame {
         codigoExpandido = this.pDM.ProcessaMacros();
 
         int i = 0;
-        for(ArrayList<String> linha : codigoExpandido){
-            codigoProcessado.append("Linha " + i + ": ");
+        for(ArrayList<String> linha : macros){
+            areaCodigo.append("Indice " + i + ": ");
             for(String comando : linha){
-                codigoProcessado.append(comando + ",");
+                areaCodigo.append(comando + " ");
+            }
+            areaCodigo.append("\n");
+            i+=3;
+        }
+
+        i = 0;
+        for(ArrayList<String> linha : codigoExpandido){
+            codigoProcessado.append("Indice " + i + ": ");
+            for(String comando : linha){
+                codigoProcessado.append(comando + " ");
             }
             codigoProcessado.append("\n");
+            i+=3;
         }
 
     }//GEN-LAST:event_processaMacroActionPerformed
