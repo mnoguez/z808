@@ -40,14 +40,16 @@ public class Memoria {
         return -1;
     }
 
-    public boolean escreveMemoria(String metadado, String local){
-        if(pegaIndiceLivre(local) > 0) {
-            this.memoria[pegaIndiceLivre(local)] = metadado;
+    public int escreveMemoria(String metadado, String local){
+        int indice = pegaIndiceLivre(local);
 
-            return true;
+        if(indice > 0) {
+            this.memoria[indice] = metadado;
+
+            return indice;
         }
         else
-            return false;
+            return -1;
     }
 
     public String[] getMemoria() {

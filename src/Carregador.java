@@ -11,7 +11,7 @@ public class Carregador {
         this.tabelaOp = tabelaOp;
     }
 
-    public ArrayList<ArrayList<String>> CarregaDados(Registradores registradores, int inicioDoCarregamento, Memoria memoria) {
+    public ArrayList<ArrayList<String>> CarregaDados(Registradores registradores, int inicioDoCarregamento, Memoria memoria, ArrayList<ArrayList<String>> dados) {
         registradores.setLC(inicioDoCarregamento);
         int i = 0;
 
@@ -38,6 +38,7 @@ public class Carregador {
             }
         }
 
+        //CRIA CODIGO OBJETO
         ArrayList<ArrayList<String>> codigoObjeto = new ArrayList<>();
 
         for(ArrayList<String> linha : this.codigo){
@@ -59,6 +60,10 @@ public class Carregador {
                 memoria.escreveMemoria(simbolo, "c");
             }
         }
+
+//        for(ArrayList<String> linha : dados){
+//
+//        }
 
         return codigoObjeto;
     }

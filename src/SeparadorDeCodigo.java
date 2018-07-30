@@ -4,12 +4,51 @@ public class SeparadorDeCodigo {
     private ArrayList<ArrayList<String>> codigoCompleto;
     private ArrayList<ArrayList<String>> codigoMacros;
     private ArrayList<ArrayList<String>> codigoExecutavel;
+    private ArrayList<ArrayList<String>> codigoDados;
 
     public SeparadorDeCodigo(ArrayList<ArrayList<String>> codigoCompleto) {
         this.codigoCompleto = codigoCompleto;
         this.codigoExecutavel = new ArrayList<ArrayList<String>>();
         this.codigoMacros = new ArrayList<ArrayList<String>>();
+        this.codigoDados = new ArrayList<>();
+    }
 
+    public void separaCodigoDados(){
+        boolean flag = false;
+        int i = 0;
+
+        for(ArrayList<String> linha : this.codigoCompleto){
+            if(linha.get(0).equals("DADOS") &&  linha.get(1).equals("SEGMENT"))
+                flag = true;
+            else
+                if(flag && !linha.get(0).equals("DADOS") &&  !linha.get(1).equals("ENDS")) {
+                    this.codigoDados.add(new ArrayList<>());
+
+                    for (String simbolo : linha)
+                        this.codigoDados.get(i).add(simbolo);
+                }
+                else
+                    flag = false;
+        }
+    }
+
+    public void separaCodigoExecutavel(){
+        boolean flag = false;
+        int i = 0;
+
+        for(ArrayList<String> linha : this.codigoCompleto){
+            if(linha.get(0).equals("CODIGO") &&  linha.get(1).equals("SEGMENT"))
+                flag = true;
+            else
+                if(flag && !linha.get(0).equals("CODIGO") &&  !linha.get(1).equals("ENDS")) {
+                    this.codigoExecutavel.add(new ArrayList<>());
+
+                    for (String simbolo : linha)
+                        this.codigoExecutavel.get(i).add(simbolo);
+                }
+                else
+                    flag = false;
+        }
     }
 
     /**
@@ -78,6 +117,14 @@ public class SeparadorDeCodigo {
 
     public void setCodigoExecutavel(ArrayList<ArrayList<String>> codigoExecutavel) {
         this.codigoExecutavel = codigoExecutavel;
+    }
+
+    public ArrayList<ArrayList<String>> getCodigoDados() {
+        return codigoDados;
+    }
+
+    public void setCodigoDados(ArrayList<ArrayList<String>> codigoDados) {
+        this.codigoDados = codigoDados;
     }
 }
 
