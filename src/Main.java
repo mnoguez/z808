@@ -207,24 +207,6 @@ public class Main {
 
         TabelaDeOperacoes tabelaOp = new TabelaDeOperacoes();
 
-        tabelaOp.getTabela().put("ADD", "00000011");
-        tabelaOp.getTabela().put("ADD", "00000011");
-        tabelaOp.getTabela().put("DIV", "11110111");
-        tabelaOp.getTabela().put("SUB", "00101011");
-        tabelaOp.getTabela().put("MUL", "11110111");
-        tabelaOp.getTabela().put("CMP", "00111101");
-        tabelaOp.getTabela().put("AND", "00100011");
-        tabelaOp.getTabela().put("NOT", "11110111");
-        tabelaOp.getTabela().put("OR", "00001011");
-        tabelaOp.getTabela().put("XOR", "00110011");
-        tabelaOp.getTabela().put("JE", "01110100");
-        tabelaOp.getTabela().put("JNZ", "01110101");
-        tabelaOp.getTabela().put("JMP", "11101011");
-        tabelaOp.getTabela().put("AX", "11000000");
-        tabelaOp.getTabela().put("DX", "11000010");
-        tabelaOp.getTabela().put("SI", "11110110");
-        tabelaOp.getTabela().put("MOV", "10001011");
-
         TabelaDeSimbolos tsg;
 
         ArrayList<ArrayList<String>> codigoObjetoParcial = new ArrayList<ArrayList<String>>();
@@ -256,6 +238,7 @@ public class Main {
         codigoObjetoParcial = ligador.liga(codigo, registradores, tabelaOp, tsg);
 
         System.out.println();
+
         for(ArrayList<String> linha : codigoObjetoParcial){
             System.out.println(linha);
         }

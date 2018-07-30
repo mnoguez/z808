@@ -5,6 +5,24 @@ public class TabelaDeOperacoes{
 
     public TabelaDeOperacoes() {
         this.tabela = new HashMap<>();
+
+        tabela.put("ADD", "00000011");
+        tabela.put("ADD", "00000011");
+        tabela.put("DIV", "11110111");
+        tabela.put("SUB", "00101011");
+        tabela.put("MUL", "11110111");
+        tabela.put("CMP", "00111101");
+        tabela.put("AND", "00100011");
+        tabela.put("NOT", "11110111");
+        tabela.put("OR", "00001011");
+        tabela.put("XOR", "00110011");
+        tabela.put("JE", "01110100");
+        tabela.put("JNZ", "01110101");
+        tabela.put("JMP", "11101011");
+        tabela.put("AX", "11000000");
+        tabela.put("DX", "11000010");
+        tabela.put("SI", "11110110");
+        tabela.put("MOV", "10001011");
     }
 
     public HashMap<String, String> getTabela() {
