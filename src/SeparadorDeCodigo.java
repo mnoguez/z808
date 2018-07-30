@@ -22,10 +22,7 @@ public class SeparadorDeCodigo {
                 flag = true;
             else
                 if(flag && !linha.get(0).equals("DADOS") &&  !linha.get(1).equals("ENDS")) {
-                    this.codigoDados.add(new ArrayList<>());
-
-                    for (String simbolo : linha)
-                        this.codigoDados.get(i).add(simbolo);
+                    this.codigoDados.add(linha);
                 }
                 else
                     flag = false;
@@ -41,10 +38,7 @@ public class SeparadorDeCodigo {
                 flag = true;
             else
                 if(flag && !linha.get(0).equals("CODIGO") &&  !linha.get(1).equals("ENDS")) {
-                    this.codigoExecutavel.add(new ArrayList<>());
-
-                    for (String simbolo : linha)
-                        this.codigoExecutavel.get(i).add(simbolo);
+                    this.codigoExecutavel.add(linha);
                 }
                 else
                     flag = false;
@@ -54,7 +48,7 @@ public class SeparadorDeCodigo {
     /**
      * Metodo que separa o codigo em definições de macros e codigo executável para uma melhor execução da máquina
      */
-    public void SaparaCodigoMacros(){
+    public void SeparaCodigoMacros(){
         boolean copiaMacro = false;
         for(ArrayList<String> linha : this.codigoCompleto) {
             if(eInicioDaMacro(linha)) {
@@ -66,7 +60,6 @@ public class SeparadorDeCodigo {
             if (copiaMacro) {
                 this.codigoMacros.add(linha);
             }else if(!eFimDaMacro(linha)) {
-                this.codigoExecutavel.add(linha);
             }
         }
     }

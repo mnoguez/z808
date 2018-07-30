@@ -4,76 +4,6 @@ import java.util.HashMap;
 public class Main {
 
     public static void main(String args[]){
-//
-//        modulo1.add(new ArrayList<String>());
-//        modulo1.get(0).add("ADD");
-//        modulo1.get(0).add("TESTE");
-//        modulo1.get(0).add("DX");
-//        modulo1.add(new ArrayList<String>());
-//        modulo1.get(1).add("ADD");
-//        modulo1.get(1).add("TESTE");
-//        modulo1.get(1).add("SI");
-//        modulo1.add(new ArrayList<String>());
-//        modulo1.get(2).add("ADD");
-//        modulo1.get(2).add("AX");
-//        modulo1.get(2).add("DX");
-//
-//        Montador montador = new Montador();
-//
-//        System.out.println("MODULO 1: ");
-//        for(ArrayList<String> linha : modulo1){
-//            System.out.println(linha);
-//        }
-//
-////        modulo1 = montador.montaCodigoObjeto(modulo1, registradores);
-////
-////        System.out.println("MODULO 1: ");
-////        for(ArrayList<String> linha : modulo1){
-////            System.out.println(linha);
-////        }
-//
-//        ArrayList<ArrayList<String>> modulo2 = new ArrayList<ArrayList<String>>();
-//
-//        modulo2.add(new ArrayList<String>());
-//        modulo2.get(0).add("ADD");
-//        modulo2.get(0).add("OI");
-//        modulo2.get(0).add("DX");
-//        modulo2.add(new ArrayList<String>());
-//        modulo2.get(1).add("MUL");
-//        modulo2.get(1).add("TESTE");
-//        modulo2.get(1).add("DX");
-//
-//        System.out.println("MODULO 2: ");
-//        for(ArrayList<String> linha : modulo2){
-//            System.out.println(linha);
-//        }
-//
-////        modulo2 = montador.montaCodigoObjeto(modulo2, registradores);
-////
-////        System.out.println("MODULO 2: ");
-////        for(ArrayList<String> linha : modulo2){
-////            System.out.println(linha);
-////        }
-//
-//        Ligador ligador = new Ligador();
-//
-//        ArrayList<ArrayList<String>> codigoObjeto = new ArrayList<ArrayList<String>>();
-//        ArrayList<ArrayList<ArrayList<String>>> modulos = new ArrayList<ArrayList<ArrayList<String>>>();
-//
-//        modulos.add(modulo1);
-//        modulos.add(modulo2);
-//
-//        codigoObjeto = ligador.liga(modulos, tabelaOp, registradores);
-//
-//        System.out.println("MODULOS:");
-//        for(ArrayList<ArrayList<String>> modulo : modulos)
-//            for(ArrayList<String> linha : modulo){
-//                System.out.println(linha);
-//            }
-//        System.out.println("CODIGO OBJETO:");
-//        for(ArrayList<String> linha : codigoObjeto){
-//            System.out.println(linha);
-//        }
 
         ArrayList<ArrayList<String>> macros = new ArrayList<ArrayList<String>>();
         ArrayList<ArrayList<String>> codigoFinal = new ArrayList<ArrayList<String>>();
@@ -122,169 +52,242 @@ public class Main {
         macros.get(9).add("DADOS");
         macros.get(9).add("SEGMENT");
         macros.add(new ArrayList<String>());
-        macros.get(7).add("VAR1");
-        macros.get(7).add("CMP");
-        macros.get(7).add("8");
+        macros.get(10).add("VAR1");
+        macros.get(10).add("CMP");
+        macros.get(10).add("8");
         macros.add(new ArrayList<String>());
-        macros.get(7).add("VAR2");
-        macros.get(7).add("CMP");
-        macros.get(7).add("15");
+        macros.get(11).add("VAR2");
+        macros.get(11).add("CMP");
+        macros.get(11).add("15");
         macros.add(new ArrayList<String>());
-        macros.get(7).add("VAR3");
-        macros.get(7).add("CMP");
-        macros.get(7).add("18");
+        macros.get(12).add("VAR3");
+        macros.get(12).add("CMP");
+        macros.get(12).add("18");
         macros.add(new ArrayList<String>());
-        macros.get(9).add("DADOS");
-        macros.get(9).add("ENDS");
+        macros.get(13).add("DADOS");
+        macros.get(13).add("ENDS");
 
         macros.add(new ArrayList<String>());
-        macros.get(9).add("CODIGO");
-        macros.get(9).add("SEGMENT");
-        macros.add(new ArrayList<String>());
-        macros.get(9).add("ADD");
-        macros.get(9).add("TESTE");
-        macros.get(9).add("DX");
-        macros.add(new ArrayList<String>());
-        macros.get(10).add("ADD");
-        macros.get(10).add("TESTE");
-        macros.get(10).add("SI");
-        macros.add(new ArrayList<String>());
-        macros.get(11).add("ADD");
-        macros.get(11).add("AX");
-        macros.get(11).add("DX");
-        macros.add(new ArrayList<String>());
-        macros.get(12).add("SOMA");
-        macros.get(12).add("ABC");
-        macros.get(12).add("DEF");
-        macros.get(12).add("GHE");
-        macros.add(new ArrayList<String>());
-        macros.get(13).add("LOUCURA");
-        macros.get(13).add("QUATRO");
-        macros.get(13).add("CINCO");
-        macros.get(13).add("SEIS");
-        macros.add(new ArrayList<String>());
-        macros.get(14).add("ADD");
-        macros.get(14).add("AX");
-        macros.get(14).add("DX");
+        macros.get(14).add("CODIGO");
+        macros.get(14).add("SEGMENT");
         macros.add(new ArrayList<String>());
         macros.get(15).add("ADD");
-        macros.get(15).add("AX");
+        macros.get(15).add("TESTE");
         macros.get(15).add("DX");
         macros.add(new ArrayList<String>());
         macros.get(16).add("ADD");
-        macros.get(16).add("AX");
-        macros.get(16).add("DX");
+        macros.get(16).add("TESTE");
+        macros.get(16).add("SI");
         macros.add(new ArrayList<String>());
         macros.get(17).add("ADD");
         macros.get(17).add("AX");
         macros.get(17).add("DX");
         macros.add(new ArrayList<String>());
-        macros.get(9).add("CODIGO");
-        macros.get(9).add("ENDS");
+        macros.get(18).add("SOMA");
+        macros.get(18).add("ABC");
+        macros.get(18).add("DEF");
+        macros.get(18).add("GHE");
+        macros.add(new ArrayList<String>());
+        macros.get(19).add("LOUCURA");
+        macros.get(19).add("QUATRO");
+        macros.get(19).add("CINCO");
+        macros.get(19).add("SEIS");
+        macros.add(new ArrayList<String>());
+        macros.get(20).add("ADD");
+        macros.get(20).add("AX");
+        macros.get(20).add("DX");
+        macros.add(new ArrayList<String>());
+        macros.get(21).add("ADD");
+        macros.get(21).add("AX");
+        macros.get(21).add("DX");
+        macros.add(new ArrayList<String>());
+        macros.get(22).add("ADD");
+        macros.get(22).add("AX");
+        macros.get(22).add("DX");
+        macros.add(new ArrayList<String>());
+        macros.get(23).add("ADD");
+        macros.get(23).add("AX");
+        macros.get(23).add("DX");
+        macros.add(new ArrayList<String>());
+        macros.get(24).add("CODIGO");
+        macros.get(24).add("ENDS");
 
         ArrayList<ArrayList<String>> modulo2 = new ArrayList<ArrayList<String>>();
-        macros.add(new ArrayList<String>());
-        macros.get(9).add("DADOS");
-        macros.get(9).add("SEGMENT");
-        macros.add(new ArrayList<String>());
-        macros.get(7).add("VAR1");
-        macros.get(7).add("CMP");
-        macros.get(7).add("8");
-        macros.add(new ArrayList<String>());
-        macros.get(7).add("VAR2");
-        macros.get(7).add("CMP");
-        macros.get(7).add("15");
-        macros.add(new ArrayList<String>());
-        macros.get(7).add("VAR3");
-        macros.get(7).add("CMP");
-        macros.get(7).add("18");
-        macros.add(new ArrayList<String>());
-        macros.get(9).add("DADOS");
-        macros.get(9).add("ENDS");
         modulo2.add(new ArrayList<String>());
-        modulo2.get(0).add("SUB");
-        modulo2.get(0).add("AX");
-        modulo2.get(0).add("SI");
+        modulo2.get(0).add("CALC");
+        modulo2.get(0).add("MACRO");
+        modulo2.get(0).add("VAR1");
+        modulo2.get(0).add("VAR2");
+        modulo2.get(0).add("VAR3");
         modulo2.add(new ArrayList<String>());
         modulo2.get(1).add("ADD");
-        modulo2.get(1).add("VAR");
-        modulo2.get(1).add("SI");
+        modulo2.get(1).add("VAR1");
+        modulo2.get(1).add("VAR2");
         modulo2.add(new ArrayList<String>());
         modulo2.get(2).add("SUB");
-        modulo2.get(2).add("AX");
-        modulo2.get(2).add("SI");
+        modulo2.get(2).add("VAR2");
+        modulo2.get(2).add("VAR3");
         modulo2.add(new ArrayList<String>());
-        modulo2.get(3).add("ADD");
-        modulo2.get(3).add("VAR");
-        modulo2.get(3).add("SI");
+        modulo2.get(3).add("ENDM");
         modulo2.add(new ArrayList<String>());
-        modulo2.get(4).add("ADD");
-        modulo2.get(4).add("VAR");
-        modulo2.get(4).add("SI");
+        modulo2.get(4).add("FIBO");
+        modulo2.get(4).add("MACRO");
+        modulo2.get(4).add("VAR1");
+        modulo2.get(4).add("VAR2");
+        modulo2.get(4).add("VAR3");
+        modulo2.add(new ArrayList<String>());
+        modulo2.get(5).add("ADD");
+        modulo2.get(5).add("VAR1");
+        modulo2.get(5).add("VAR2");
+        modulo2.add(new ArrayList<String>());
+        modulo2.get(6).add("SUB");
+        modulo2.get(6).add("VAR2");
+        modulo2.get(6).add("VAR3");
+        modulo2.add(new ArrayList<String>());
+        modulo2.get(7).add("MUL");
+        modulo2.get(7).add("VAR2");
+        modulo2.get(7).add("VAR1");
+        modulo2.add(new ArrayList<String>());
+        modulo2.get(8).add("DIV");
+        modulo2.get(8).add("VAR3");
+        modulo2.get(8).add("VAR1");
+        modulo2.add(new ArrayList<String>());
+        modulo2.get(9).add("ENDM");
+
+        modulo2.add(new ArrayList<String>());
+        modulo2.get(10).add("DADOS");
+        modulo2.get(10).add("SEGMENT");
+        modulo2.add(new ArrayList<String>());
+        modulo2.get(11).add("VAR1");
+        modulo2.get(11).add("CMP");
+        modulo2.get(11).add("15");
+        modulo2.add(new ArrayList<String>());
+        modulo2.get(12).add("VAR2");
+        modulo2.get(12).add("CMP");
+        modulo2.get(12).add("16");
+        modulo2.add(new ArrayList<String>());
+        modulo2.get(13).add("VAR3");
+        modulo2.get(13).add("CMP");
+        modulo2.get(13).add("21");
+        modulo2.add(new ArrayList<String>());
+        modulo2.get(14).add("DADOS");
+        modulo2.get(14).add("ENDS");
+
+        modulo2.add(new ArrayList<String>());
+        modulo2.get(15).add("CODIGO");
+        modulo2.get(15).add("SEGMENT");
+        modulo2.add(new ArrayList<String>());
+        modulo2.get(16).add("SUB");
+        modulo2.get(16).add("AX");
+        modulo2.get(16).add("SI");
+        modulo2.add(new ArrayList<String>());
+        modulo2.get(17).add("ADD");
+        modulo2.get(17).add("VAR");
+        modulo2.get(17).add("SI");
+        modulo2.add(new ArrayList<String>());
+        modulo2.get(18).add("SUB");
+        modulo2.get(18).add("AX");
+        modulo2.get(18).add("SI");
+        modulo2.add(new ArrayList<String>());
+        modulo2.get(19).add("CALC");
+        modulo2.get(19).add("VAR1");
+        modulo2.get(19).add("VAR2");
+        modulo2.get(19).add("VAR2");
+        modulo2.add(new ArrayList<String>());
+        modulo2.get(20).add("FIBO");
+        modulo2.get(20).add("VAR4");
+        modulo2.get(20).add("VAR5");
+        modulo2.get(20).add("VAR6");
+        modulo2.add(new ArrayList<String>());
+        modulo2.get(21).add("ADD");
+        modulo2.get(21).add("VAR");
+        modulo2.get(21).add("SI");
+        modulo2.add(new ArrayList<String>());
+        modulo2.get(22).add("ADD");
+        modulo2.get(22).add("VAR");
+        modulo2.get(22).add("SI");
+        modulo2.add(new ArrayList<String>());
+        modulo2.get(23).add("CODIGO");
+        modulo2.get(23).add("ENDS");
+
 
         ArrayList<ArrayList<String>> modulo3 = new ArrayList<ArrayList<String>>();
         modulo3.add(new ArrayList<String>());
-        modulo3.get(0).add("SUB");
-        modulo3.get(0).add("AX");
-        modulo3.get(0).add("SI");
+        modulo3.get(0).add("CODIGO");
+        modulo3.get(0).add("SEGMENT");
         modulo3.add(new ArrayList<String>());
-        modulo3.get(1).add("ADD");
-        modulo3.get(1).add("VAR");
+        modulo3.get(1).add("SUB");
+        modulo3.get(1).add("AX");
         modulo3.get(1).add("SI");
         modulo3.add(new ArrayList<String>());
-        modulo3.get(2).add("SUB");
-        modulo3.get(2).add("AX");
+        modulo3.get(2).add("ADD");
+        modulo3.get(2).add("VAR");
         modulo3.get(2).add("SI");
         modulo3.add(new ArrayList<String>());
-        modulo3.get(3).add("ADD");
-        modulo3.get(3).add("VAR");
+        modulo3.get(3).add("SUB");
+        modulo3.get(3).add("AX");
         modulo3.get(3).add("SI");
         modulo3.add(new ArrayList<String>());
         modulo3.get(4).add("ADD");
         modulo3.get(4).add("VAR");
         modulo3.get(4).add("SI");
+        modulo3.add(new ArrayList<String>());
+        modulo3.get(5).add("ADD");
+        modulo3.get(5).add("VAR");
+        modulo3.get(5).add("SI");
+        modulo3.add(new ArrayList<String>());
+        modulo3.get(6).add("CODIGO");
+        modulo3.get(6).add("ENDS");
 
-        SeparadorDeCodigo s = new SeparadorDeCodigo(macros);
-        s.SaparaCodigoMacros();
-        ProcessadorDeMacros pdMacros = new ProcessadorDeMacros(s.getCodigoMacros(), s.getCodigoExecutavel());
-        codigoFinal = pdMacros.ProcessaMacros();
+        ArrayList<ArrayList<ArrayList<String>>> codigo = new ArrayList<>();
+        ArrayList<ArrayList<ArrayList<String>>> entradaLigador = new ArrayList<>();
 
         TabelaDeOperacoes tabelaOp = new TabelaDeOperacoes();
-
-        TabelaDeSimbolos tsg;
-
         ArrayList<ArrayList<String>> codigoObjetoParcial = new ArrayList<ArrayList<String>>();
         Registradores registradores = new Registradores();
 
-        Montador montador = new Montador();
-        codigoObjetoParcial = montador.montaCodigoObjeto(codigoFinal, registradores, tabelaOp);
+        TabelaDeSimbolos tsg = new TabelaDeSimbolos();
 
-        //System.out.println(s.getCodigoMacros());
-
-        for(ArrayList<String> linha : codigoFinal){
-            System.out.println(linha);
-        }
-
-        System.out.println();
-
-        for(ArrayList<String> linha : codigoObjetoParcial){
-            System.out.println(linha);
-        }
-
-        ArrayList<ArrayList<ArrayList<String>>> codigo = new ArrayList<>();
-        codigo.add(codigoFinal);
+        codigo.add(macros);
         codigo.add(modulo2);
         codigo.add(modulo3);
 
-        tsg = montador.getTabelaSimbolos();
+        for(ArrayList<ArrayList<String>> modulo : codigo){
+            SeparadorDeCodigo s = new SeparadorDeCodigo(modulo);
+            s.separaCodigoDados();
+            s.separaCodigoExecutavel();
+            s.SeparaCodigoMacros();
+
+            ProcessadorDeMacros pdMacros = new ProcessadorDeMacros(s.getCodigoMacros(), s.getCodigoExecutavel());
+            codigoFinal = pdMacros.ProcessaMacros();
+
+            Montador montador = new Montador();
+            codigoObjetoParcial = montador.montaCodigoObjeto(codigoFinal, registradores, tabelaOp);
+
+            for(ArrayList<String> linha : codigoFinal){
+                System.out.println(linha);
+            }
+            System.out.println();
+            for(ArrayList<String> linha : codigoObjetoParcial){
+                System.out.println(linha);
+            }
+            System.out.println();
+
+
+            entradaLigador.add(codigoFinal);
+
+
+        }
+
 
         Ligador ligador = new Ligador();
-        codigoObjetoParcial = ligador.liga(codigo, registradores, tabelaOp, tsg);
+        codigoObjetoParcial = ligador.liga(entradaLigador, registradores, tabelaOp, tsg);
 
         System.out.println();
 
         for(ArrayList<String> linha : codigoObjetoParcial){
             System.out.println(linha);
         }
+
     }
 }
