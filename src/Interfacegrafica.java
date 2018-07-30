@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.EOFException;
 import java.io.IOException;
+import java.util.ArrayList;
 /**
  *
  * @author douglas
@@ -26,10 +27,10 @@ public class Interfacegrafica extends javax.swing.JFrame {
         super("Z808");
         initComponents();
         setLocationRelativeTo(null);
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setWrapStyleWord(true);
-        jTextArea2.setLineWrap(true);
-        jTextArea2.setWrapStyleWord(true);
+        areaCodigo.setLineWrap(true);
+        areaCodigo.setWrapStyleWord(true);
+        areaMem.setLineWrap(true);
+        areaMem.setWrapStyleWord(true);
         lerTxt();      
     }
     
@@ -46,7 +47,7 @@ public class Interfacegrafica extends javax.swing.JFrame {
                     line += codigo + "\n";
                     codigo = arq2.readLine();
                 }
-                 jTextArea1.setText(line);
+                 areaCodigo.setText(line);
                 arq.close();
             }catch (IOException ex){
                 System.out.println("ERRO");
@@ -67,7 +68,7 @@ public class Interfacegrafica extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        areaCodigo = new javax.swing.JTextArea();
         runButton = new javax.swing.JButton();
         cleanButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -84,7 +85,7 @@ public class Interfacegrafica extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        areaMem = new javax.swing.JTextArea();
         processaMacro = new javax.swing.JButton();
         montaCodigo = new javax.swing.JButton();
         ligaCodigo = new javax.swing.JButton();
@@ -92,9 +93,9 @@ public class Interfacegrafica extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        areaCodigo.setColumns(20);
+        areaCodigo.setRows(5);
+        jScrollPane1.setViewportView(areaCodigo);
 
         runButton.setText("Run");
         runButton.addActionListener(new java.awt.event.ActionListener() {
@@ -158,9 +159,9 @@ public class Interfacegrafica extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Memória");
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        areaMem.setColumns(20);
+        areaMem.setRows(5);
+        jScrollPane2.setViewportView(areaMem);
 
         processaMacro.setText("Processar Macro");
         processaMacro.addActionListener(new java.awt.event.ActionListener() {
@@ -238,17 +239,15 @@ public class Interfacegrafica extends javax.swing.JFrame {
                                         .addComponent(Sr)
                                         .addGap(18, 18, 18)
                                         .addComponent(srTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(40, Short.MAX_VALUE))))
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -313,9 +312,9 @@ public class Interfacegrafica extends javax.swing.JFrame {
         srTextField.setText("0");
         ipTextField.setText("0");
      //Memoria zerada
-        jTextArea2.setText("");
+        areaMem.setText("");
      //Campo de código zerado
-        jTextArea1.setText("");
+        areaCodigo.setText("");
       
     }//GEN-LAST:event_cleanButtonActionPerformed
 
@@ -336,7 +335,15 @@ public class Interfacegrafica extends javax.swing.JFrame {
     }//GEN-LAST:event_srTextFieldActionPerformed
 
     private void processaMacroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processaMacroActionPerformed
-        // TODO add your handling code here:
+       
+       //ProcessadorDeMacros PM = new ProcessadorDeMacros();
+       ArrayList<ArrayList<String>> codigoMacros = new ArrayList<>();
+       //codigoMacros = PM.ProcessaMacros();
+       for(ArrayList<String> Linha: codigoMacros) {
+           for(String comando: Linha) {
+               areaCodigo.append(comando);
+           }
+       }
     }//GEN-LAST:event_processaMacroActionPerformed
 
     private void montaCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_montaCodigoActionPerformed
@@ -393,6 +400,8 @@ public class Interfacegrafica extends javax.swing.JFrame {
     private javax.swing.JLabel Ip;
     private javax.swing.JLabel Si;
     private javax.swing.JLabel Sr;
+    private javax.swing.JTextArea areaCodigo;
+    private javax.swing.JTextArea areaMem;
     private javax.swing.JTextField axTextField;
     private javax.swing.JButton carregaCodigo;
     private javax.swing.JButton cleanButton;
@@ -403,8 +412,6 @@ public class Interfacegrafica extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JButton ligaCodigo;
     private javax.swing.JButton montaCodigo;
     private javax.swing.JButton processaMacro;
