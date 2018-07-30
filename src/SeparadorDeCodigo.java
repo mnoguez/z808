@@ -7,8 +7,8 @@ public class SeparadorDeCodigo {
 
     public SeparadorDeCodigo(ArrayList<ArrayList<String>> codigoCompleto) {
         this.codigoCompleto = codigoCompleto;
-        this.codigoExecutavel = null;
-        this.codigoMacros = null;
+        this.codigoExecutavel = new ArrayList<ArrayList<String>>();
+        this.codigoMacros = new ArrayList<ArrayList<String>>();
 
     }
 
@@ -18,16 +18,17 @@ public class SeparadorDeCodigo {
     public void SaparaCodigoMacros(){
         boolean copiaMacro = false;
         for(ArrayList<String> linha : this.codigoCompleto) {
-            System.out.println(linha);
-            if(eInicioDaMacro(linha))
+            if(eInicioDaMacro(linha)) {
                 copiaMacro = true;
-            if (!eFimDaMacro(linha)) {
+            }else if (eFimDaMacro(linha)) {
                 copiaMacro = false;
                 this.codigoMacros.add(linha);
             }
             if (copiaMacro) {
                 this.codigoMacros.add(linha);
-            }else this.codigoExecutavel.add(linha);
+            }else if(!eFimDaMacro(linha)) {
+                this.codigoExecutavel.add(linha);
+            }
         }
     }
 
