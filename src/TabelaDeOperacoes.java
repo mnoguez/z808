@@ -7,7 +7,6 @@ public class TabelaDeOperacoes{
         this.tabela = new HashMap<>();
 
         tabela.put("ADD", "00000011");
-        tabela.put("ADD", "00000011");
         tabela.put("DIV", "11110111");
         tabela.put("SUB", "00101011");
         tabela.put("MUL", "11110111");
