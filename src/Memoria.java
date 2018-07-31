@@ -23,8 +23,10 @@ public class Memoria {
 
         if(local.equals("c"))
             for(indice = 0; indice < this.inicioDados; indice++){
-                if(this.memoria[indice].equals("0000000000000000"))
+                if(this.memoria[indice].equals("0000000000000000")) {
+//                    System.out.println(indice);
                     return indice;
+                }
             }
         else if(local.equals("d"))
             for(indice = this.inicioDados; indice < this.inicioPilha; indice++){

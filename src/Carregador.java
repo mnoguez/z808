@@ -64,6 +64,7 @@ public class Carregador {
         //ESCREVE NA MEMORIA O CODIGO OBJETO
         for(ArrayList<String> linha : codigoObjeto){
             for(String simbolo : linha){
+                System.out.println(simbolo);
                 memoria.escreveMemoria(simbolo, "c");
             }
         }
@@ -77,7 +78,7 @@ public class Carregador {
                     this.tabelaFNPV.add(new String[3]);
                     this.tabelaFNPV.get(i)[0] = simbolo;
                     this.tabelaFNPV.get(i)[1] = this.tabelaSimbolosGlobal.getTabela().get(simbolo)[0];
-                    this.tabelaFNPV.get(i)[2] = Integer.toString(memoria.escreveMemoria(linha.get(1), "d"));
+                    this.tabelaFNPV.get(i)[2] = Integer.toString(memoria.escreveMemoria(linha.get(2), "d"));
                 }
             }
         }
