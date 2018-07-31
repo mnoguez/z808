@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 /**
  *
- * @author douglas
+ *
  */
 public class Interface extends javax.swing.JFrame {
 
