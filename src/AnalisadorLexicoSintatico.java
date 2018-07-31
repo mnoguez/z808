@@ -50,6 +50,21 @@ public class AnalisadorLexicoSintatico {
         }
     }
 
+    private int verificadordeInstrucao(ArrayList<String> Linha){
+        //1º Caso é instrução
+        if(Linha.get(0).compareToIgnoreCase("DIV")==0||Linha.get(0).compareToIgnoreCase("MUL")==0||Linha.get(0).compareToIgnoreCase("ADD")==0||Linha.get(0).compareToIgnoreCase("SUB")==0||Linha.get(0).compareToIgnoreCase("AND")==0||Linha.get(0).compareToIgnoreCase("OR")==0||Linha.get(0).compareToIgnoreCase("XOR")==0||Linha.get(0).compareToIgnoreCase("CMP")==0||Linha.get(0).compareToIgnoreCase("NOT")==0||Linha.get(0).compareToIgnoreCase("POP")==0||Linha.get(0).compareToIgnoreCase("PUSH")==0||Linha.get(0).compareToIgnoreCase("MOV")==0){
+            return 0;
+        }
+        //2º Caso é Label
+        else if (Linha.get(1).compareToIgnoreCase("DIV")==0||Linha.get(1).compareToIgnoreCase("MUL")==0||Linha.get(1).compareToIgnoreCase("ADD")==0||Linha.get(1).compareToIgnoreCase("SUB")==0||Linha.get(1).compareToIgnoreCase("AND")==0||Linha.get(1).compareToIgnoreCase("OR")==0||Linha.get(1).compareToIgnoreCase("XOR")==0||Linha.get(1).compareToIgnoreCase("CMP")==0||Linha.get(1).compareToIgnoreCase("NOT")==0||Linha.get(1).compareToIgnoreCase("POP")==0||Linha.get(1).compareToIgnoreCase("PUSH")==0||Linha.get(1).compareToIgnoreCase("MOV")==0){
+            return 1;
+        }
+        //3º Caso é chamada de Macro ou qualquer outro identificador que não seja uma instrução
+        else{
+            return 2;
+        }
+    }
+
     private boolean analiseSintatica(){
         for(int i=0;i<this.listaTokens.size();i++){
             this.flagOperacao=0;
@@ -66,7 +81,7 @@ public class AnalisadorLexicoSintatico {
             if(this.listaTokens.get(i).get(0).compareToIgnoreCase("ENDM")==0){
                 this.flagOperacao=1;
                 if(this.flagSegmentoMacro==1){
-                    this.flagSegmentoMacro=-1;
+                    this.flagSegmentoMacro=0;
                 }
                 else{
                     return false;
@@ -81,7 +96,7 @@ public class AnalisadorLexicoSintatico {
                     return false;
                 }
             }
-            if(this.listaTokens.get(i).get(0).compareToIgnoreCase("DADOS")==0&&this.listaTokens.get(i).get(1).compareToIgnoreCase("END")==0) {
+            if(this.listaTokens.get(i).get(0).compareToIgnoreCase("DADOS")==0&&this.listaTokens.get(i).get(1).compareToIgnoreCase("ENDS")==0) {
                 this.flagOperacao=1;
                 if (this.flagSegmentoDados == 1) {
                     this.flagSegmentoDados=-1;
@@ -96,194 +111,99 @@ public class AnalisadorLexicoSintatico {
                     return false;
                 }
             }
-            if(this.listaTokens.get(i).get(0).compareToIgnoreCase("CODIGO")==0&&this.listaTokens.get(i).get(1).compareToIgnoreCase("END")==0) {
+            if(this.listaTokens.get(i).get(0).compareToIgnoreCase("CODIGO")==0&&this.listaTokens.get(i).get(1).compareToIgnoreCase("ENDS")==0) {
                 this.flagOperacao=1;
                 if (this.flagSegmentoCodigo == 1) {
                     this.flagSegmentoCodigo=-1;
                 }
             }
-            if(this.listaTokens.get(i).get(0).compareToIgnoreCase("DIV")==0||this.listaTokens.get(i).get(0).compareToIgnoreCase("MUL")==0){
-                this.flagOperacao=1;
-                if(this.listaTokens.get(i).size()==2){
-                    if(this.listaTokens.get(i).get(1).compareToIgnoreCase("AX")!=0){
-                        if(this.listaTokens.get(i).get(1).compareToIgnoreCase("SI")!=0){
-                            return false;
-                        }
-                    }
-                }
-                else{
-                    return false;
-                }
-            }
-            //Considerando LABEL
-            if(this.listaTokens.get(i).get(1).compareToIgnoreCase("DIV")==0||this.listaTokens.get(i).get(1).compareToIgnoreCase("MUL")==0){
-                this.flagOperacao=1;
-                if(this.listaTokens.get(i).size()<=3){
-                    if(this.listaTokens.get(i).get(2).compareToIgnoreCase("AX")!=0){
-                        if(this.listaTokens.get(i).get(2).compareToIgnoreCase("SI")!=0){
-                            return false;
-                        }
-                    }
-                }
-                else{
-                    return false;
-                }
-            }
-            if (this.listaTokens.get(i).get(0).compareToIgnoreCase("ADD")==0 || this.listaTokens.get(i).get(0).compareToIgnoreCase("SUB")==0 || this.listaTokens.get(i).get(0).compareToIgnoreCase("AND")==0 || this.listaTokens.get(i).get(0).compareToIgnoreCase("OR")==0 || this.listaTokens.get(i).get(0).compareToIgnoreCase("XOR")==0) {
-                this.flagOperacao=1;
-                //System.out.println("Entrou");
-                if (this.listaTokens.get(i).size() == 3) {
-                    if (this.listaTokens.get(i).get(1).compareToIgnoreCase("AX")==0) {
-                        if (this.listaTokens.get(i).get(2).compareToIgnoreCase("AX")!=0) {
-                            if (this.listaTokens.get(i).get(2).compareToIgnoreCase("DX")!=0) {
+            if((this.flagSegmentoCodigo==1||this.flagSegmentoMacro==1)&&(this.verificadordeInstrucao(this.listaTokens.get(i))==0)) {//Desconsidera intruções se estiver analisando dados
+                if (this.listaTokens.get(i).get(0).compareToIgnoreCase("DIV") == 0 || this.listaTokens.get(i).get(0).compareToIgnoreCase("MUL") == 0) {
+                    this.flagOperacao = 1;
+                    if (this.listaTokens.get(i).size() == 2) {
+                        if (this.listaTokens.get(i).get(1).compareToIgnoreCase("AX") != 0) {
+                            if (this.listaTokens.get(i).get(1).compareToIgnoreCase("SI") != 0) {
                                 return false;
                             }
                         }
-                        else {return false;}
-                    }else{
+                    } else {
                         return false;
                     }
                 }
-            }
-            //Considerando LABEL
-            if (this.listaTokens.get(i).get(1).compareToIgnoreCase("ADD")==0 || this.listaTokens.get(i).get(1).compareToIgnoreCase("SUB")==0 || this.listaTokens.get(i).get(1).compareToIgnoreCase("AND")==0 || this.listaTokens.get(i).get(1).compareToIgnoreCase("OR")==0 || this.listaTokens.get(i).get(1).compareToIgnoreCase("XOR")==0) {
-                this.flagOperacao=1;
-                if (this.listaTokens.get(i).size() <= 4) {
-                    if (this.listaTokens.get(i).get(2).compareToIgnoreCase("AX")==0) {
-                        if (this.listaTokens.get(i).get(3).compareToIgnoreCase("AX")!=0) {
-                            if (this.listaTokens.get(i).get(3).compareToIgnoreCase("DX")!=0) {
+                if (this.listaTokens.get(i).get(0).compareToIgnoreCase("ADD") == 0 || this.listaTokens.get(i).get(0).compareToIgnoreCase("SUB") == 0 || this.listaTokens.get(i).get(0).compareToIgnoreCase("AND") == 0 || this.listaTokens.get(i).get(0).compareToIgnoreCase("OR") == 0 || this.listaTokens.get(i).get(0).compareToIgnoreCase("XOR") == 0) {
+                    this.flagOperacao = 1;
+                    if (this.listaTokens.get(i).size() == 3) {
+                        if (this.listaTokens.get(i).get(1).compareToIgnoreCase("AX") == 0) {
+                            if (this.listaTokens.get(i).get(2).compareToIgnoreCase("AX") != 0) {
+                                if (this.listaTokens.get(i).get(2).compareToIgnoreCase("DX") != 0) {
+                                    return false;
+                                }
+                            } else {
+                                return false;
+                            }
+                        } else {
+                            return false;
+                        }
+                    }
+                }
+                if (this.listaTokens.get(i).get(0).compareToIgnoreCase("CMP") == 0) {
+                    this.flagOperacao = 1;
+                    if (this.listaTokens.get(i).size() == 3) {
+                        if (this.listaTokens.get(i).get(1).compareToIgnoreCase("AX") == 0) {
+                            if (this.listaTokens.get(i).get(2).compareToIgnoreCase("DX") != 0) {
                                 return false;
                             }
                         }
-                        else {return false;}
-                    }else{
+                    } else {
                         return false;
                     }
                 }
-            }
-            if(this.listaTokens.get(i).get(0).compareToIgnoreCase("CMP")==0){
-                this.flagOperacao=1;
-                if(this.listaTokens.get(i).size()==3){
-                    if(this.listaTokens.get(i).get(1).compareToIgnoreCase("AX")==0){
-                        if(this.listaTokens.get(i).get(2).compareToIgnoreCase("DX")!=0){
+                if (this.listaTokens.get(i).get(0).compareToIgnoreCase("NOT") == 0) {
+                    this.flagOperacao = 1;
+                    if (this.listaTokens.get(i).size() == 2) {
+                        if (this.listaTokens.get(i).get(1).compareToIgnoreCase("AX") != 0) {
                             return false;
                         }
-                    }
-                }
-                else{
-                    return false;
-                }
-            }
-            //Considerando LABEL
-            if(this.listaTokens.get(i).get(1).compareToIgnoreCase("CMP")==0){
-                this.flagOperacao=1;
-                if(this.listaTokens.get(i).size()<=4){
-                    if(this.listaTokens.get(i).get(2).compareToIgnoreCase("AX")==0){
-                        if(this.listaTokens.get(i).get(3).compareToIgnoreCase("DX")!=0){
-                            return false;
-                        }
-                    }
-                }
-                else{
-                    return false;
-                }
-            }
-            if(this.listaTokens.get(i).get(0).compareToIgnoreCase("NOT")==0){
-                this.flagOperacao=1;
-                if(this.listaTokens.get(i).size()==2){
-                    if(this.listaTokens.get(i).get(1).compareToIgnoreCase("AX")!=0){
+                    } else {
                         return false;
                     }
                 }
-                else{
-                    return false;
-                }
-            }
-            //Considerando LABEL
-            if(this.listaTokens.get(i).get(1).compareToIgnoreCase("NOT")==0){
-                this.flagOperacao=1;
-                if(this.listaTokens.get(i).size()<=3){
-                    if(this.listaTokens.get(i).get(2).compareToIgnoreCase("AX")!=0){
+                if (this.listaTokens.get(i).get(0).compareToIgnoreCase("POP") == 0 || this.listaTokens.get(i).get(0).compareToIgnoreCase("PUSH") == 0) {
+                    this.flagOperacao = 1;
+                    if (listaTokens.get(i).size() == 2) {
+                        if (this.listaTokens.get(i).get(1).compareToIgnoreCase("AX") != 0) {
+                            return false;
+                        }
+                    } else {
                         return false;
                     }
                 }
-                else{
-                    return false;
-                }
-            }
-            if(this.listaTokens.get(i).get(0).compareToIgnoreCase("POP")==0||this.listaTokens.get(i).get(0).compareToIgnoreCase("PUSH")==0){
-                this.flagOperacao=1;
-                if(listaTokens.get(i).size()==2){
-                    if(this.listaTokens.get(i).get(1).compareToIgnoreCase("AX")!=0){
+                if (this.listaTokens.get(i).get(0).compareToIgnoreCase("MOV") == 0) {
+                    this.flagOperacao = 1;
+                    if (this.listaTokens.get(i).size() == 3) {
+                        if (this.listaTokens.get(i).get(1).compareToIgnoreCase("SP") == 0 || this.listaTokens.get(i).get(1).compareToIgnoreCase("SS") == 0 || this.listaTokens.get(i).get(1).compareToIgnoreCase("DS") == 0 || this.listaTokens.get(i).get(1).compareToIgnoreCase("DX") == 0 || this.listaTokens.get(i).get(1).compareToIgnoreCase("SI") == 0) {
+                            if (this.listaTokens.get(i).get(2).compareToIgnoreCase("AX") != 0) {
+                                return false;
+                            }
+                        }
+                        if (this.listaTokens.get(i).get(1).compareToIgnoreCase("AX") == 0) {
+                            if (this.listaTokens.get(i).get(2).compareToIgnoreCase("DS") != 0 && this.listaTokens.get(i).get(2).compareToIgnoreCase("SS") != 0 && this.listaTokens.get(i).get(2).compareToIgnoreCase("SP") != 0 && this.listaTokens.get(i).get(2).compareToIgnoreCase("CS") != 0 && this.listaTokens.get(i).get(2).compareToIgnoreCase("DX") != 0 && this.listaTokens.get(i).get(2).compareToIgnoreCase("SI") != 0) {
+                                return false;
+                            }
+                        }
+                    } else {
                         return false;
                     }
                 }
-                else{
+                if (this.listaTokens.get(i).get(0).compareToIgnoreCase("JZ") == 0 || this.listaTokens.get(i).get(0).compareToIgnoreCase("JNZ") == 0 || this.listaTokens.get(i).get(0).compareToIgnoreCase("CALL") == 0) {
+                    this.flagOperacao = 1;
+                }
+                if (this.flagOperacao == 0) {
                     return false;
                 }
-            }
-            //Considerando LABEL
-            if(this.listaTokens.get(i).get(1).compareToIgnoreCase("POP")==0||this.listaTokens.get(i).get(1).compareToIgnoreCase("PUSH")==0){
-                this.flagOperacao=1;
-                if(listaTokens.get(i).size()<=3){
-                    if(this.listaTokens.get(i).get(2).compareToIgnoreCase("AX")!=0){
-                        return false;
-                    }
-                }
-                else{
-                    return false;
-                }
-            }
-            if(this.listaTokens.get(i).get(0).compareToIgnoreCase("MOV")==0){
-                this.flagOperacao=1;
-                if(this.listaTokens.get(i).size()==3){
-                    if(this.listaTokens.get(i).get(1).compareToIgnoreCase("SP")==0||this.listaTokens.get(i).get(1).compareToIgnoreCase("SS")==0||this.listaTokens.get(i).get(1).compareToIgnoreCase("DS")==0||this.listaTokens.get(i).get(1).compareToIgnoreCase("DX")==0||this.listaTokens.get(i).get(1).compareToIgnoreCase("SI")==0){
-                        if(this.listaTokens.get(i).get(2).compareToIgnoreCase("AX")!=0){
-                            return false;
-                        }
-                    }
-                    if(this.listaTokens.get(i).get(1).compareToIgnoreCase("AX")==0){
-                        if(this.listaTokens.get(i).get(2).compareToIgnoreCase("DS")!=0&&this.listaTokens.get(i).get(2).compareToIgnoreCase("SS")!=0&&this.listaTokens.get(i).get(2).compareToIgnoreCase("SP")!=0&&this.listaTokens.get(i).get(2).compareToIgnoreCase("CS")!=0&&this.listaTokens.get(i).get(2).compareToIgnoreCase("DX")!=0&&this.listaTokens.get(i).get(2).compareToIgnoreCase("SI")!=0){
-                            return false;
-                        }
-                    }
-                }
-                else{
-                    return false;
-                }
-            }
-            //Considerando LABEL
-            if(this.listaTokens.get(i).get(1).compareToIgnoreCase("MOV")==0){
-                this.flagOperacao=1;
-                if(this.listaTokens.get(i).size()<=4){
-                    if(this.listaTokens.get(i).get(2).compareToIgnoreCase("SP")==0||this.listaTokens.get(i).get(2).compareToIgnoreCase("SS")==0||this.listaTokens.get(i).get(2).compareToIgnoreCase("DS")==0||this.listaTokens.get(i).get(2).compareToIgnoreCase("DX")==0||this.listaTokens.get(i).get(2).compareToIgnoreCase("SI")==0){
-                        if(this.listaTokens.get(i).get(3).compareToIgnoreCase("AX")!=0){
-                            return false;
-                        }
-                    }
-                    if(this.listaTokens.get(i).get(2).compareToIgnoreCase("AX")==0){
-                        this.flagOperacao=1;
-                        if(this.listaTokens.get(i).get(3).compareToIgnoreCase("DS")!=0&&this.listaTokens.get(i).get(3).compareToIgnoreCase("SS")!=0&&this.listaTokens.get(i).get(3).compareToIgnoreCase("SP")!=0&&this.listaTokens.get(i).get(3).compareToIgnoreCase("CS")!=0&&this.listaTokens.get(i).get(3).compareToIgnoreCase("DX")!=0&&this.listaTokens.get(i).get(3).compareToIgnoreCase("SI")!=0){
-                            return false;
-                        }
-                    }
-                }
-                else{
-                    return false;
-                }
-            }
-            if(this.listaTokens.get(i).get(0).compareToIgnoreCase("JZ")==0||this.listaTokens.get(i).get(0).compareToIgnoreCase("JNZ")==0||this.listaTokens.get(i).get(0).compareToIgnoreCase("CALL")==0){
-                this.flagOperacao=1;
-            }
-            //Considerando LABEL
-            if(this.listaTokens.get(i).get(1).compareToIgnoreCase("JZ")==0||this.listaTokens.get(i).get(1).compareToIgnoreCase("JNZ")==0||this.listaTokens.get(i).get(1).compareToIgnoreCase("CALL")==0){
-                this.flagOperacao=1;
-            }
-            if(this.flagOperacao==0){
-                return false;
             }
         }
-        if(this.flagSegmentoDados==-1&&this.flagSegmentoCodigo==-1&&(this.flagSegmentoMacro==-1||this.flagSegmentoMacro==0)) {
+        if((this.flagSegmentoDados==-1||this.flagSegmentoDados==0)&&(this.flagSegmentoCodigo==-1||this.flagSegmentoCodigo==0)&&this.flagSegmentoMacro==0) {
             return true;
         }
         else{
