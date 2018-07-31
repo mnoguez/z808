@@ -9,8 +9,8 @@ public class Memoria {
     public Memoria(Integer nbits) {
         this.memoria = new String[(int) Math.pow(2, nbits)];
 
-        for(String posicao : memoria){
-            posicao = "0000000000000000";
+        for(int i = 0; i<Math.pow(2, nbits); i++){
+            this.memoria[i] = "0000000000000000";
         }
 
         this.inicioCodigo = 0;

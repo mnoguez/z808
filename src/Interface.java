@@ -43,6 +43,7 @@ public class Interface extends javax.swing.JFrame {
         areaCodigo.setWrapStyleWord(true);
         areaMem.setLineWrap(true);
         areaMem.setWrapStyleWord(true);
+        areaMem.setRows(65300);
         lerTxt();
     }
 
@@ -386,7 +387,7 @@ public class Interface extends javax.swing.JFrame {
         if(areaCodigo.getText().contains("MODULO")){
             String[] modulos = areaCodigo.getText().split("MODULO");
             System.out.println(modulos.length);
-            for(int i = 1; i < modulos.length; i++){
+            for(int i = 0; i < modulos.length; i++){
                 codigo.add(modulos[i].split("\n"));
             }
         }else {

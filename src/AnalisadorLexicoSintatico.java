@@ -18,7 +18,7 @@ public class AnalisadorLexicoSintatico {
     }
 
     public void quebraTokens(String Linha){
-        String[] tokens = Linha.split("\\s|,\\s|,|:|:\\s");
+        String[] tokens = Linha.split("\\s|,\\s|,|:|:\\s|\n");
         addListaTokens(tokens, tokens.length);
     }
 
