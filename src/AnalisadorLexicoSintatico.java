@@ -52,9 +52,11 @@ public class AnalisadorLexicoSintatico {
      */
     public ArrayList<ArrayList<String>> getListaTokens() {
         if(this.analiseSintatica()){
+            System.out.println("OK");
             return this.listaTokens;
         }
         else{
+            System.out.println("ERROR");
             return null;
         }
 
