@@ -99,7 +99,12 @@ public abstract class Run {
                             else if(memoria.getMemoria()[Integer.parseInt(registradores.getPC()) + 2].equals("11110110"))
                                 registradores.setAX(registradores.getSI());
                             else{
-
+                                for(String[] simbolo : tabelaFNPV){
+                                    //POSICAO 1 = ENDEREÇO DO SIMBOLO
+                                    if(memoria.getMemoria()[Integer.parseInt(registradores.getPC()) + 2].equals(simbolo[1])){
+                                        registradores.setAX(memoria.buscaMemoria(Integer.parseInt(simbolo[2], 10)));
+                                    }
+                                }
                             }
 
                             break;
@@ -114,7 +119,12 @@ public abstract class Run {
                             else if(memoria.getMemoria()[Integer.parseInt(registradores.getPC()) + 2].equals("11110110"))
                                 registradores.setAX(registradores.getSI());
                             else{
-
+                                for(String[] simbolo : tabelaFNPV){
+                                    //POSICAO 1 = ENDEREÇO DO SIMBOLO
+                                    if(memoria.getMemoria()[Integer.parseInt(registradores.getPC()) + 2].equals(simbolo[1])){
+                                        registradores.setDX(memoria.buscaMemoria(Integer.parseInt(simbolo[2], 10)));
+                                    }
+                                }
                             }
                             break;
 
@@ -128,11 +138,13 @@ public abstract class Run {
                             else if(memoria.getMemoria()[Integer.parseInt(registradores.getPC()) + 2].equals("11000010"))
                                 registradores.setAX(registradores.getSI());
                             else{
-
+                                for(String[] simbolo : tabelaFNPV){
+                                    //POSICAO 1 = ENDEREÇO DO SIMBOLO
+                                    if(memoria.getMemoria()[Integer.parseInt(registradores.getPC()) + 2].equals(simbolo[1])){
+                                        registradores.setSI(memoria.buscaMemoria(Integer.parseInt(simbolo[2], 10)));
+                                    }
+                                }
                             }
-                            break;
-
-                        default:
                             break;
                     }
 
@@ -143,15 +155,17 @@ public abstract class Run {
                 case "00100011":
                     break;
 
-                //CASO NOT
-                case "11100111":
+                //CASO JUMP
+                case "11101011":
+                    registradores.setPC(memoria.getMemoria()[Integer.parseInt(registradores.getPC()) + 1]);
                     break;
 
-                //CASO OR
-                case "00001011":
-                    break;
-
-
+                //CASO JUMP IGUAL A ZERO
+                case "01110100":
+                    if(Integer.parseInt(registradores.getAX(), 2) == 0)
+                        registradores.setPC(memoria.getMemoria()[Integer.parseInt(registradores.getPC()) + 1]);
+                    else
+                        registradores.setPC(Integer.toString(Integer.parseInt(registradores.getPC()) + 1));
             }
         }
     }
