@@ -1,9 +1,11 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Carregador {
     private ArrayList<ArrayList<String>> codigo;
     private TabelaDeSimbolos tabelaSimbolosGlobal;
     private TabelaDeOperacoes tabelaOp;
+    private HashMap<String, Integer> tabelaFNPV;
 
     public Carregador(ArrayList<ArrayList<String>> codigo, TabelaDeSimbolos tabelaSimbolosGlobal, TabelaDeOperacoes tabelaOp) {
         this.codigo = codigo;
@@ -54,16 +56,19 @@ public class Carregador {
             i++;
         }
 
-        //ESCREVE NA MEMORIA
+        //ESCREVE NA MEMORIA O CODIGO OBJETO
         for(ArrayList<String> linha : codigoObjeto){
             for(String simbolo : linha){
                 memoria.escreveMemoria(simbolo, "c");
             }
         }
 
-//        for(ArrayList<String> linha : dados){
-//
-//        }
+        this.tabelaFNPV = new HashMap<>();
+
+        //ESCREVE PARTE DE DADOS
+        for(ArrayList<String> linha : dados){
+            this.tabelaFNPV.put(linha.get(0), memoria.escreveMemoria(linha.get(1), "d"));
+        }
 
         return codigoObjeto;
     }
@@ -97,5 +102,13 @@ public class Carregador {
 
     public void setTabelaOp(TabelaDeOperacoes tabelaOp) {
         this.tabelaOp = tabelaOp;
+    }
+
+    public HashMap<String, Integer> getTabelaFNPV() {
+        return tabelaFNPV;
+    }
+
+    public void setTabelaFNPV(HashMap<String, Integer> tabelaFNPV) {
+        this.tabelaFNPV = tabelaFNPV;
     }
 }

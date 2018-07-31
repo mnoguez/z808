@@ -52,6 +52,13 @@ public class Memoria {
             return -1;
     }
 
+    public String buscaMemoria(int indice){
+        if(indice > 0)
+            return this.memoria[indice];
+        else
+            return null;
+    }
+
     public String[] getMemoria() {
         return memoria;
     }
