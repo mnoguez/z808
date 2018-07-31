@@ -508,9 +508,13 @@ public class Interface extends javax.swing.JFrame {
                 entradaCarregador.add(linha);
             }
         }
+
+        ArrayList<ArrayList<String>> dados = sDC.getCodigoDados();
+        System.out.println(dados);
+
         mem = new Memoria(16);
         car = new Carregador(entradaCarregador, tsg, tabelaOp);
-        car.CarregaDados(registradores, mem.pegaIndiceLivre("c"), mem, entradaCarregador);
+        car.CarregaDados(registradores, mem.pegaIndiceLivre("c"), mem, dados);
 
         for(int i = 0; i < mem.getMemoria().length; i++){
             areaMem.append(mem.getMemoria()[i]);
