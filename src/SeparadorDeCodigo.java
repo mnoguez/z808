@@ -17,6 +17,8 @@ public class SeparadorDeCodigo {
         boolean flag = false;
         int i = 0;
 
+//        System.out.println(this.codigoCompleto);
+
         for(ArrayList<String> linha : this.codigoCompleto){
             if(linha.get(0).equals("DADOS") &&  linha.get(1).equals("SEGMENT"))
                 flag = true;
