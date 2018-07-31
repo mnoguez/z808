@@ -18,6 +18,9 @@ public class Registradores{
     private String REM;
     private String RBM;
 
+    /**
+     * Construtor
+     */
     public Registradores(){
         this.SP="0000000000000000";
         this.SI="0000000000000000";
@@ -28,6 +31,9 @@ public class Registradores{
         this.SS="0000000000000000";
     }
 
+    /**
+     * Getters and Setters
+     */
     public String getAX() {
         return AX;
     }
