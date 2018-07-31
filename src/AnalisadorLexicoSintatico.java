@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 
 public class AnalisadorLexicoSintatico {
+    /**
+     * Atributos
+     */
     private int cont;
     private int flagSegmentoDados;
     private int flagSegmentoCodigo;
@@ -8,6 +11,9 @@ public class AnalisadorLexicoSintatico {
     private int flagOperacao;
     private ArrayList<ArrayList<String>> listaTokens;
 
+    /**
+     * Construtor
+     */
     public AnalisadorLexicoSintatico(){
         this.cont=0;
         this.flagSegmentoDados=0;
@@ -17,12 +23,22 @@ public class AnalisadorLexicoSintatico {
         this.listaTokens = new ArrayList<ArrayList<String>>();
     }
 
+    /**
+     * Esse método recebe uma linha do código, na forma de string e quebra tudo em tokens
+     * após os tokens serem quebrados eles são add em uma lista de tokens
+     * @param Linha
+     */
     public void quebraTokens(String Linha){
         String[] tokens = Linha.split("\\s|,\\s|,|:|:\\s|\n");
         addListaTokens(tokens, tokens.length);
     }
 
-    private void addListaTokens(String[] Tokens, int tamanho){
+    /**
+     * Esse método cria uma lista de tokens de acordo com o conjunto de tokens passados como argumento
+     * @param Tokens
+     * @param Tamanho
+     */
+    private void addListaTokens(String[] Tokens, int Tamanho){
         this.listaTokens.add(new ArrayList<String>());
         for(int i=0;i<tamanho;i++) {
             this.listaTokens.get(this.cont).add(Tokens[i]);
@@ -30,18 +46,23 @@ public class AnalisadorLexicoSintatico {
         this.cont++;
     }
 
+    /**
+     * Retorna a Lista de tokens do código informado, para retornar a lista é realizada a análise sintática
+     * @return
+     */
     public ArrayList<ArrayList<String>> getListaTokens() {
         if(this.analiseSintatica()){
-            System.out.println("OK");
             return this.listaTokens;
         }
         else{
-            System.out.println("Tem Erro seu sopa");
             return null;
         }
 
     }
 
+    /**
+     * Método de teste, verifica se o código informado é quebrado em tokens corretamente
+     */
     public void imprimirListaTokens(){
         for(int i=0;i<this.listaTokens.size();i++){
             for(int c=0;c<this.listaTokens.get(i).size();c++){
@@ -50,6 +71,11 @@ public class AnalisadorLexicoSintatico {
         }
     }
 
+    /**
+     * Analisa se a linha de código a ser verificada contém um label ou somente instrução
+     * @param Linha
+     * @return
+     */
     private int verificadordeInstrucao(ArrayList<String> Linha){
         if(Linha.size()>2) {
             //1º Caso é instrução
@@ -68,6 +94,10 @@ public class AnalisadorLexicoSintatico {
         return -1;
     }
 
+    /**
+     * Analisa sintaticamente a lista de tokens
+     * @return
+     */
     private boolean analiseSintatica(){
         for(int i=0;i<this.listaTokens.size();i++){
             this.flagOperacao=0;
