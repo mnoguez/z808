@@ -1,5 +1,3 @@
-package src;
-
 import java.io.FileNotFoundException;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -17,11 +15,25 @@ public class Interface extends javax.swing.JFrame {
      */
 
     String[] code;
+    public AnalisadorLexicoSintatico aLS;
     public SeparadorDeCodigo sDC;
     public ProcessadorDeMacros pDM;
     public Montador mont;
     public Ligador lig;
     public Carregador car;
+    public Memoria mem;
+    public TabelaDeOperacoes tabelaOp = new TabelaDeOperacoes();
+    Registradores registradores = new Registradores();
+    public TabelaDeSimbolos tsg = new TabelaDeSimbolos();
+
+
+    ArrayList<ArrayList<ArrayList<String>>> macros = new ArrayList<>();
+    ArrayList<ArrayList<ArrayList<String>>> codigoExpandido = new ArrayList<>();
+    ArrayList<ArrayList<ArrayList<String>>> entradaLigador = new ArrayList<>();
+    ArrayList<ArrayList<String>> codigoObjetoParcial = new ArrayList<>();
+    ArrayList<ArrayList<String>> codigoObjetoFinal = new ArrayList<>();
+    ArrayList<ArrayList<String>> modulos = new ArrayList<>();
+
 
     public Interface() {
         super("Z808");
@@ -368,163 +380,143 @@ public class Interface extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_srTextFieldActionPerformed
 
+
+    private void analisaCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analisaCodigoActionPerformed
+        ArrayList<String[]> codigo = new ArrayList<>();
+        if(areaCodigo.getText().contains("MODULO")){
+            String[] modulos = areaCodigo.getText().split("MODULO");
+            System.out.println(modulos.length);
+            for(int i = 1; i < modulos.length; i++){
+                codigo.add(modulos[i].split("\n"));
+            }
+        }else {
+            codigo.add(areaCodigo.getText().split("\n"));
+        }
+        aLS = new AnalisadorLexicoSintatico();
+        for(String[] modulo: codigo){
+            for (String comando : modulo){
+                System.out.println(comando);
+                aLS.quebraTokens(comando);
+            }
+            macros.add(aLS.getListaTokens());
+        }
+    }//GEN-LAST:event_analisaCodigoActionPerformed
+
     private void processaMacroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processaMacroActionPerformed
-        ArrayList<ArrayList<String>> macros = new ArrayList<ArrayList<String>>();
-        macros.add(new ArrayList<String>());
-        macros.get(0).add("SOMA");
-        macros.get(0).add("MACRO");
-        macros.get(0).add("AAUX");
-        macros.get(0).add("BAUX");
-        macros.get(0).add("CAUX");
-        macros.add(new ArrayList<String>());
-        macros.get(1).add("ADD");
-        macros.get(1).add("AAUX");
-        macros.get(1).add("BAUX");
-        macros.add(new ArrayList<String>());
-        macros.get(2).add("SUB");
-        macros.get(2).add("CAUX");
-        macros.get(2).add("AAUX");
-        macros.add(new ArrayList<String>());
-        macros.get(3).add("ENDM");
-        macros.add(new ArrayList<String>());
-        macros.get(4).add("LOUCURA");
-        macros.get(4).add("MACRO");
-        macros.get(4).add("UM");
-        macros.get(4).add("DOIS");
-        macros.get(4).add("TRES");
-        macros.add(new ArrayList<String>());
-        macros.get(5).add("ADD");
-        macros.get(5).add("UM");
-        macros.get(5).add("DOIS");
-        macros.add(new ArrayList<String>());
-        macros.get(6).add("SUB");
-        macros.get(6).add("DOIS");
-        macros.get(6).add("TRES");
-        macros.add(new ArrayList<String>());
-        macros.get(7).add("MUL");
-        macros.get(7).add("DOIS");
-        macros.get(7).add("UM");
-        macros.add(new ArrayList<String>());
-        macros.get(8).add("DIV");
-        macros.get(8).add("DOIS");
-        macros.get(8).add("TRES");
-        macros.get(8).add("ENDM");
-
-        macros.add(new ArrayList<String>());
-        macros.get(9).add("DADOS");
-        macros.get(9).add("SEGMENT");
-        macros.add(new ArrayList<String>());
-        macros.get(10).add("VAR1");
-        macros.get(10).add("CMP");
-        macros.get(10).add("8");
-        macros.add(new ArrayList<String>());
-        macros.get(11).add("VAR2");
-        macros.get(11).add("CMP");
-        macros.get(11).add("15");
-        macros.add(new ArrayList<String>());
-        macros.get(12).add("VAR3");
-        macros.get(12).add("CMP");
-        macros.get(12).add("18");
-        macros.add(new ArrayList<String>());
-        macros.get(13).add("DADOS");
-        macros.get(13).add("ENDS");
-
-        macros.add(new ArrayList<String>());
-        macros.get(14).add("CODIGO");
-        macros.get(14).add("SEGMENT");
-        macros.add(new ArrayList<String>());
-        macros.get(15).add("ADD");
-        macros.get(15).add("TESTE");
-        macros.get(15).add("DX");
-        macros.add(new ArrayList<String>());
-        macros.get(16).add("ADD");
-        macros.get(16).add("TESTE");
-        macros.get(16).add("SI");
-        macros.add(new ArrayList<String>());
-        macros.get(17).add("ADD");
-        macros.get(17).add("AX");
-        macros.get(17).add("DX");
-        macros.add(new ArrayList<String>());
-        macros.get(18).add("SOMA");
-        macros.get(18).add("ABC");
-        macros.get(18).add("DEF");
-        macros.get(18).add("GHE");
-        macros.add(new ArrayList<String>());
-        macros.get(19).add("LOUCURA");
-        macros.get(19).add("QUATRO");
-        macros.get(19).add("CINCO");
-        macros.get(19).add("SEIS");
-        macros.add(new ArrayList<String>());
-        macros.get(20).add("ADD");
-        macros.get(20).add("AX");
-        macros.get(20).add("DX");
-        macros.add(new ArrayList<String>());
-        macros.get(21).add("ADD");
-        macros.get(21).add("AX");
-        macros.get(21).add("DX");
-        macros.add(new ArrayList<String>());
-        macros.get(22).add("ADD");
-        macros.get(22).add("AX");
-        macros.get(22).add("DX");
-        macros.add(new ArrayList<String>());
-        macros.get(23).add("ADD");
-        macros.get(23).add("AX");
-        macros.get(23).add("DX");
-        macros.add(new ArrayList<String>());
-        macros.get(24).add("CODIGO");
-        macros.get(24).add("ENDS");
-
-
+        areaCodigo.setText("");
+        codigoProcessado.setText("");
         ArrayList<ArrayList<String>> codigoCompleto = new ArrayList<>();
 
-        this.sDC = new SeparadorDeCodigo(macros);
-        this.sDC.separaCodigoDados();
-        this.sDC.SeparaCodigoMacros();
-        this.sDC.separaCodigoExecutavel();
-
-        this.pDM = new ProcessadorDeMacros(sDC.getCodigoMacros(),sDC.getCodigoExecutavel());
-        ArrayList<ArrayList<String>> codigoExpandido = new ArrayList<>();
-        codigoExpandido = this.pDM.ProcessaMacros();
-
         int i = 0;
-        for(ArrayList<String> linha : macros){
-            areaCodigo.append("Indice " + i + ": ");
-            for(String comando : linha){
-                areaCodigo.append(comando + " ");
+        int j = 0;
+        int index = 0;
+        for(ArrayList<ArrayList<String>> macro : macros){
+            this.sDC = new SeparadorDeCodigo(macro);
+            this.sDC.separaCodigoDados();
+            this.sDC.SeparaCodigoMacros();
+            this.sDC.separaCodigoExecutavel();
+
+            this.pDM = new ProcessadorDeMacros(sDC.getCodigoMacros(),sDC.getCodigoExecutavel());
+            codigoExpandido.add(this.pDM.ProcessaMacros());
+
+            //Imprime na area de codigo principal
+            for(ArrayList<String> linha : macro){
+                areaCodigo.append(i + ": ");
+                for(String comando : linha){
+                    areaCodigo.append(comando + " ");
+                }
+                areaCodigo.append("\n");
+                i+=3;
             }
-            areaCodigo.append("\n");
-            i+=3;
+
+            //imprime na área de código processado
+
+            for(ArrayList<String> linha : sDC.getCodigoMacros()){
+                codigoProcessado.append(j + ": ");
+                for(String comando : linha){
+                    codigoProcessado.append(comando + " ");
+                }
+                codigoProcessado.append("\n");
+                j+=3;
+            }
+            for(ArrayList<String> linha : sDC.getCodigoDados()){
+                codigoProcessado.append(j + ": ");
+                for(String comando : linha){
+                    codigoProcessado.append(comando + " ");
+                }
+                codigoProcessado.append("\n");
+                j+=3;
+            }
+            for(ArrayList<String> linha : codigoExpandido.get(index)){
+                codigoProcessado.append(j + ": ");
+                for(String comando : linha){
+                    codigoProcessado.append(comando + " ");
+                }
+                codigoProcessado.append("\n");
+                j+=3;
+            }
+            index++;
         }
 
-        i = 0;
-        for(ArrayList<String> linha : codigoExpandido){
-            codigoProcessado.append("Indice " + i + ": ");
+    }//GEN-LAST:event_processaMacroActionPerformed
+
+    private void montaCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_montaCodigoActionPerformed
+        codigoProcessado.setText("");
+
+        int i = 0;
+        for(ArrayList<ArrayList<String>> codigo: codigoExpandido){
+            this.mont = new Montador();
+            codigoObjetoParcial = this.mont.montaCodigoObjeto(codigo, registradores, tabelaOp);
+
+            //Imprime na area de codigo processado
+            for(ArrayList<String> linha : codigoObjetoParcial){
+                codigoProcessado.append(i + ": ");
+                for(String comando : linha){
+                    codigoProcessado.append(comando + " ");
+                }
+                codigoProcessado.append("\n");
+                i+=3;
+            }
+            entradaLigador.add(codigo);
+        }
+
+
+    }//GEN-LAST:event_montaCodigoActionPerformed
+
+    private void ligaCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ligaCodigoActionPerformed
+        codigoProcessado.setText("");
+        this.lig = new Ligador();
+        codigoObjetoFinal = lig.liga(entradaLigador, registradores, tabelaOp, tsg);
+
+        int i = 0;
+
+        for(ArrayList<String> linha : codigoObjetoFinal){
+            codigoProcessado.append(i + ": ");
             for(String comando : linha){
                 codigoProcessado.append(comando + " ");
             }
             codigoProcessado.append("\n");
             i+=3;
         }
-
-    }//GEN-LAST:event_processaMacroActionPerformed
-
-    private void montaCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_montaCodigoActionPerformed
-        Montador mCodigo = new Montador();
-        ArrayList<ArrayList<String>> montarCodigo = new ArrayList<>();
-
-    }//GEN-LAST:event_montaCodigoActionPerformed
-
-    private void ligaCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ligaCodigoActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_ligaCodigoActionPerformed
 
     private void carregaCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carregaCodigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_carregaCodigoActionPerformed
+        ArrayList<ArrayList<String>> entradaCarregador = new ArrayList<>();
+        for(ArrayList<ArrayList<String>> codigo : entradaLigador){
+            for (ArrayList<String> linha : codigo){
+                entradaCarregador.add(linha);
+            }
+        }
+        mem = new Memoria(16);
+        car = new Carregador(entradaCarregador, tsg, tabelaOp);
+        car.CarregaDados(registradores, mem.pegaIndiceLivre("c"), mem, entradaCarregador);
 
-    private void analisaCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analisaCodigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_analisaCodigoActionPerformed
+        for(int i = 0; i < mem.getMemoria().length; i++){
+            areaMem.append(mem.getMemoria()[i]);
+            areaMem.append("\n");
+
+        }
+    }//GEN-LAST:event_carregaCodigoActionPerformed
 
     /**
      * @param args the command line arguments
