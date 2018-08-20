@@ -1,0 +1,75 @@
+package analisador;
+
+import java.io.*;
+import java.lang.*;
+import java_cup.runtime.*;
+import java_cup.runtime.Symbol;
+import java.util.ArrayList;
+import java.util.*;
+import analisador.Yylex;
+
+parser code
+{:
+    private Symbol s;  //s recebe o Symbol da classe Symbol
+    
+    public static void main(String args[]) throws Exception{
+    //    new Parser (new Yylex(System.in)).parse();
+    }
+    
+    public void syntax_error(Symbol s){
+        this.s = s; //recebe simbolo que deu erro        
+    }
+
+    //metodo para pegar o "s"
+    public Symbol getS(){
+        return this.s;
+}
+:};
+
+terminal  PALAVRA,OP_ARITMETICO, OP_LOGICO,OP_ATRIBUICAO, OP_RELACIONAL,SEPARADOR, PULA, MOVER, PUSH, POP,  
+    COMENTARIO, ID, NUMERO, INICIO_SUB, FIM_SUB, INICIO_CODIGO, FIM_CODIGO, INICIO_DADOS, FIM_DADOS, PONTO_ENTRADA, PONTO_SAIDA,
+    INICIO_MACRO, FIM_MACRO, EXITM, DW, LINHA, ERROR, REGISTRADOR, DIRETIVAS,VIRGULA, PROP_ASSUME, ASSUME, PONTO_INT,
+    
+
+non terminal START, INI, EXPR, EXPI, IDI, DOIS_PONTOS, FDW,OPERADORA,OPERADORL,OPIGUAIS
+start with START;
+
+START ::= INI EXPR FIM
+;	
+	
+EXPR ::= ID IDI | ID FDW | FDW | OPERADORA | OPERADORL | OPERADORR | OPIGUAIS | ASSUME DIRETIVAS DOIS_PONTOS PROP_ASSUME | ID NUMERO | ID NUMERO IDI
+;
+
+FDW ::= DW NUMERO | DW PONTO_INT
+;
+
+OPIGUAIS ::= PULA NUMERO | PUSH ID | POP ID
+; 
+
+OPERADORA ::=  OP_ARITMETICO REGISTRADOR VIRGULA NUMERO | OP_ARITMETICO REGISTRADOR VIRGULA ID | OP_ARITMETICO REGISTRADOR VIRGULA REGISTRADOR
+;
+
+OPERADORL ::= OP_LOGICO REGISTRADOR VIRGULA NUMERO | OP_LOGICO REGISTRADOR VIRGULA ID| OP_LOGICO REGISTRADOR VIRGULA REGISTRADOR
+;
+
+OPERADORR ::= ID OPERADOR_RELACIONAL ID | NUMERO OPERADOR_RELACIONAL NUMERO
+;
+
+
+INI ::= INICIO_DADOS EXPR FIM_DADOS| ID INICIO_MACRO EXPR FIM_MACRO| INICIO_CODIGO EXPR FIM_CODIGO| PONTO_ENTRADA DOIS_PONTOS EXPR PONTO_SAIDA| ID INICIO_SUB EXPM FIM_SUB
+
+;
+X
+IDI ::= ID VIRGULA IDI | ID
+;
+
+DOIS_PONTOS ::= OP_ATRIBUICAO
+;
+
+FIM ::= ENDS
+;
+
+
+
+
+
